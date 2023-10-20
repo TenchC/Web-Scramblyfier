@@ -1,3 +1,1 @@
-# project-2
-
-The starting point for a browser extension project
+THE ULTIMATE WEB SCRAMBLYFIER, IT SCRAMBLYFIES EVERYTHING

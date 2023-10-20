@@ -1,11 +1,11 @@
-/* attempt at adding options, have not been successsful so far
+let button = document.getElementById("scramble_button")
 
-chrome.storage.sync.get({bbackground}, function(result){
-  console.log(bbackground);
-});
-*/
+button.addEventListener("click", scramble);
+//window.location.assign("https://google.com")
 
 
+
+function scramble (){
 //background color of everything
 for (e of document.getElementsByTagName('*')) {
   //boolean variable for gradient or block
@@ -42,7 +42,8 @@ for (e of document.getElementsByTagName('*')) {
 //end color text
 
 
-// To mess up fonts
+// To mess up fonts (Not in use)
+/*
 var font1 =  "Arial, Helvetica, sans-serif",
 font2 = "Snell Roundhand, cursive",
 font3 = "fantasy";
@@ -67,6 +68,7 @@ for (e of document.getElementsByTagName('*')) {
     e.style.setProperty('font-size', fontsize);
   }
 }
+*/
 //End fonts
 
 
@@ -128,9 +130,10 @@ for (e of document.getElementsByTagName("a")) {
   e.style.setProperty('height', height);
 }
 //end margins
+}
 
-
-//Mess up text
+//Mess up text Not in use
+/*
 characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 for (e of document.getElementsByTagName("p")) {
   var text = e,
@@ -175,4 +178,5 @@ for (e of document.getElementsByTagName("h2", "h3", "h4", "h5", "h6")) {
   }
   text.innerHTML = result5;
 }
+*/
 //end text

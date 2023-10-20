@@ -1,0 +1,11 @@
+body{
+    display: block;
+    width: 200%;
+    background-color: white;
+}
+
+h2 {
+    display: flex;
+    width: max-content;
+
+}

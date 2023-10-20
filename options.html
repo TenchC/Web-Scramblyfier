@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Web Scramblyfier User Interface</title>
+    <link rel="stylesheet" href="interface.css" />
+  </head>
   <body>
-    <h1> What would you like to scramble? </h1>
-    <div>
-      <button type="button" id="background">Background</button>
-      <button type="button" id="text">Text</button>
-      <button type="button" id="textcolor">Text Color</button>
-      <button type="button" id="fonts">Fonts</button>
-      <button type="button" id="margins">Margins</button>
+    <h2>The Web Scramblyfier</h2>
+    <button id = "scramble_button"><h3>SCRAMBLE!</h3></button>
+    <br>
+    <br>
+    <select id="color">
+      <option value="red">red</option>
+      <option value="green">green</option>
+      <option value="blue">blue</option>
+      <option value="yellow">yellow</option>
+    </select>
 
-      <h3 id="currentscrambly"> Currently scrambled: </h3>
-      <p id="backgroundtoggle"> Background </p>
-      <p id="texttoggle"> Text </p>
-      <p id="textcolortoggle"> Text Color </p>
-      <p id="fontstoggle"> Fonts </p>
-      <p id="marginstoggle"> Margins </p>
-    </div>
+    <label>
+      <input type="checkbox" id="like" />
+      I like colors.
+    </label>
+
+    <div id="status"></div>
+    <button id="save">Save</button>
+
+    <script src="options.js"></script>
+    <script src="web-scramblyfier.js"></script>
   </body>
-  <script src="options.js"></script>
 </html>
