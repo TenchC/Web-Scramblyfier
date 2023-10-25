@@ -1,9 +1,17 @@
-let button = document.getElementById("scramble_button")
-
-button.addEventListener("click", scramble);
-//window.location.assign("https://google.com")
 
 
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+    if (request.greeting === "hello")
+      sendResponse({farewell: "goodbye"});
+  }
+);
+//let button = document.getElementById("scramble_button")
+
+//button.addEventListener("click", scramble);
 
 function scramble (){
 //background color of everything
