@@ -49,8 +49,11 @@ let dev = document.getElementById("dev").addEventListener("click", () => {
 });
 //end display dev tools
 
+/*********************************************/
+//HERE IS WHERE SLIDERS AND BUTTONS AND DEV TOOLS GO
+/*********************************************/
 
-// // Saves options to chrome.storage (not in use)
+// // Saves options to chrome.storage (not in use, but for saving custom scrambly presets in future)
 
 // const saveOptions = () => {
 //   const color = document.getElementById("color").value;

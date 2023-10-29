@@ -280,47 +280,47 @@ function scrambleHeaders() {
   }
   //end background color of h1
 
-    //background color of h2
-    for (e of document.getElementsByTagName("h2")) {
-      //boolean variable for gradient or block
-      var boolean = Math.round(Math.random());
-      if (boolean > 0.5) {
-        //generates a random solid rgb background color
-        var c =
-          "rgb(" +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          ")";
-        e.style.setProperty("background-color", c);
-      } else {
-        //generates a random gradient
-        var c1 =
-          "linear-gradient(rgb(" +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          "), ";
-        var c2 =
-          "rgb(" +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          "))";
-        var gradient = c1 + c2;
-        e.style.removeProperty("background-color");
-        e.style.setProperty("background-image", gradient);
-      }
+  //background color of h2
+  for (e of document.getElementsByTagName("h2")) {
+    //boolean variable for gradient or block
+    var boolean = Math.round(Math.random());
+    if (boolean > 0.5) {
+      //generates a random solid rgb background color
+      var c =
+        "rgb(" +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        ")";
+      e.style.setProperty("background-color", c);
+    } else {
+      //generates a random gradient
+      var c1 =
+        "linear-gradient(rgb(" +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        "), ";
+      var c2 =
+        "rgb(" +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        "))";
+      var gradient = c1 + c2;
+      e.style.removeProperty("background-color");
+      e.style.setProperty("background-image", gradient);
     }
-    //end background color of h2
+  }
+  //end background color of h2
 
-      //background color of h3
+  //background color of h3
   for (e of document.getElementsByTagName("h3")) {
     //boolean variable for gradient or block
     var boolean = Math.round(Math.random());
@@ -360,47 +360,47 @@ function scrambleHeaders() {
   }
   //end background color of h3
 
-    //background color of h4
-    for (e of document.getElementsByTagName("h4")) {
-      //boolean variable for gradient or block
-      var boolean = Math.round(Math.random());
-      if (boolean > 0.5) {
-        //generates a random solid rgb background color
-        var c =
-          "rgb(" +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          ")";
-        e.style.setProperty("background-color", c);
-      } else {
-        //generates a random gradient
-        var c1 =
-          "linear-gradient(rgb(" +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          "), ";
-        var c2 =
-          "rgb(" +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          "))";
-        var gradient = c1 + c2;
-        e.style.removeProperty("background-color");
-        e.style.setProperty("background-image", gradient);
-      }
+  //background color of h4
+  for (e of document.getElementsByTagName("h4")) {
+    //boolean variable for gradient or block
+    var boolean = Math.round(Math.random());
+    if (boolean > 0.5) {
+      //generates a random solid rgb background color
+      var c =
+        "rgb(" +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        ")";
+      e.style.setProperty("background-color", c);
+    } else {
+      //generates a random gradient
+      var c1 =
+        "linear-gradient(rgb(" +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        "), ";
+      var c2 =
+        "rgb(" +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        "))";
+      var gradient = c1 + c2;
+      e.style.removeProperty("background-color");
+      e.style.setProperty("background-image", gradient);
     }
-    //end background color of h4
+  }
+  //end background color of h4
 
-      //background color of h5
+  //background color of h5
   for (e of document.getElementsByTagName("h5")) {
     //boolean variable for gradient or block
     var boolean = Math.round(Math.random());
@@ -454,21 +454,21 @@ function scrambleHeaders() {
   }
   //end color text of h1
 
-    //color of text of h2
-    for (e of document.getElementsByTagName("h2")) {
-      var c =
-        "rgb(" +
-        Math.floor(Math.random() * 255) +
-        "," +
-        Math.floor(Math.random() * 255) +
-        "," +
-        Math.floor(Math.random() * 255) +
-        ")";
-      e.style.setProperty("color", c);
-    }
-    //end color text of h2
+  //color of text of h2
+  for (e of document.getElementsByTagName("h2")) {
+    var c =
+      "rgb(" +
+      Math.floor(Math.random() * 255) +
+      "," +
+      Math.floor(Math.random() * 255) +
+      "," +
+      Math.floor(Math.random() * 255) +
+      ")";
+    e.style.setProperty("color", c);
+  }
+  //end color text of h2
 
-      //color of text of h3
+  //color of text of h3
   for (e of document.getElementsByTagName("h3")) {
     var c =
       "rgb(" +
@@ -482,21 +482,21 @@ function scrambleHeaders() {
   }
   //end color text of h3
 
-    //color of text of h4
-    for (e of document.getElementsByTagName("h4")) {
-      var c =
-        "rgb(" +
-        Math.floor(Math.random() * 255) +
-        "," +
-        Math.floor(Math.random() * 255) +
-        "," +
-        Math.floor(Math.random() * 255) +
-        ")";
-      e.style.setProperty("color", c);
-    }
-    //end color text of h4
+  //color of text of h4
+  for (e of document.getElementsByTagName("h4")) {
+    var c =
+      "rgb(" +
+      Math.floor(Math.random() * 255) +
+      "," +
+      Math.floor(Math.random() * 255) +
+      "," +
+      Math.floor(Math.random() * 255) +
+      ")";
+    e.style.setProperty("color", c);
+  }
+  //end color text of h4
 
-      //color of text of h5
+  //color of text of h5
   for (e of document.getElementsByTagName("h5")) {
     var c =
       "rgb(" +
@@ -527,24 +527,24 @@ function scrambleHeaders() {
   }
   //end margins of h1
 
-    //mess up margins of h2
-    for (e of document.getElementsByTagName("h2")) {
-      margins = Math.round(Math.random() * 200 - 100);
-      margins = margins + "px";
-      padding = Math.round(Math.random() * 200 - 100);
-      padding = padding + "px";
-      width = Math.round(Math.random() * 500 - 250);
-      width = width + "px";
-      height = Math.round(Math.random() * 500 - 250);
-      height = height + "px";
-      e.style.setProperty("margin", margins);
-      e.style.setProperty("padding", padding);
-      e.style.setProperty("width", width);
-      e.style.setProperty("height", height);
-    }
-    //end margins of h2
+  //mess up margins of h2
+  for (e of document.getElementsByTagName("h2")) {
+    margins = Math.round(Math.random() * 200 - 100);
+    margins = margins + "px";
+    padding = Math.round(Math.random() * 200 - 100);
+    padding = padding + "px";
+    width = Math.round(Math.random() * 500 - 250);
+    width = width + "px";
+    height = Math.round(Math.random() * 500 - 250);
+    height = height + "px";
+    e.style.setProperty("margin", margins);
+    e.style.setProperty("padding", padding);
+    e.style.setProperty("width", width);
+    e.style.setProperty("height", height);
+  }
+  //end margins of h2
 
-      //mess up margins of h3
+  //mess up margins of h3
   for (e of document.getElementsByTagName("h3")) {
     margins = Math.round(Math.random() * 200 - 100);
     margins = margins + "px";
@@ -561,24 +561,24 @@ function scrambleHeaders() {
   }
   //end margins of h3
 
-    //mess up margins of h4
-    for (e of document.getElementsByTagName("h4")) {
-      margins = Math.round(Math.random() * 200 - 100);
-      margins = margins + "px";
-      padding = Math.round(Math.random() * 200 - 100);
-      padding = padding + "px";
-      width = Math.round(Math.random() * 500 - 250);
-      width = width + "px";
-      height = Math.round(Math.random() * 500 - 250);
-      height = height + "px";
-      e.style.setProperty("margin", margins);
-      e.style.setProperty("padding", padding);
-      e.style.setProperty("width", width);
-      e.style.setProperty("height", height);
-    }
-    //end margins of h4
+  //mess up margins of h4
+  for (e of document.getElementsByTagName("h4")) {
+    margins = Math.round(Math.random() * 200 - 100);
+    margins = margins + "px";
+    padding = Math.round(Math.random() * 200 - 100);
+    padding = padding + "px";
+    width = Math.round(Math.random() * 500 - 250);
+    width = width + "px";
+    height = Math.round(Math.random() * 500 - 250);
+    height = height + "px";
+    e.style.setProperty("margin", margins);
+    e.style.setProperty("padding", padding);
+    e.style.setProperty("width", width);
+    e.style.setProperty("height", height);
+  }
+  //end margins of h4
 
-      //mess up margins of h5
+  //mess up margins of h5
   for (e of document.getElementsByTagName("h5")) {
     margins = Math.round(Math.random() * 200 - 100);
     margins = margins + "px";
@@ -596,49 +596,13 @@ function scrambleHeaders() {
   //end margins of h5
 }
 
-function scrambleP(){
-    //background color of p tags
-    for (e of document.getElementsByTagName("p")) {
-      //boolean variable for gradient or block
-      var boolean = Math.round(Math.random());
-      if (boolean > 0.5) {
-        //generates a random solid rgb background color
-        var c =
-          "rgb(" +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          ")";
-        e.style.setProperty("background-color", c);
-      } else {
-        //generates a random gradient
-        var c1 =
-          "linear-gradient(rgb(" +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          "), ";
-        var c2 =
-          "rgb(" +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          "," +
-          Math.floor(Math.random() * 255) +
-          "))";
-        var gradient = c1 + c2;
-        e.style.removeProperty("background-color");
-        e.style.setProperty("background-image", gradient);
-      }
-    }
-    //end background color of p tags
-  
-    //color of text
-    for (e of document.getElementsByTagName("p")) {
+function scrambleP() {
+  //background color of p tags
+  for (e of document.getElementsByTagName("p")) {
+    //boolean variable for gradient or block
+    var boolean = Math.round(Math.random());
+    if (boolean > 0.5) {
+      //generates a random solid rgb background color
       var c =
         "rgb(" +
         Math.floor(Math.random() * 255) +
@@ -647,26 +611,62 @@ function scrambleP(){
         "," +
         Math.floor(Math.random() * 255) +
         ")";
-      e.style.setProperty("color", c);
+      e.style.setProperty("background-color", c);
+    } else {
+      //generates a random gradient
+      var c1 =
+        "linear-gradient(rgb(" +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        "), ";
+      var c2 =
+        "rgb(" +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        "," +
+        Math.floor(Math.random() * 255) +
+        "))";
+      var gradient = c1 + c2;
+      e.style.removeProperty("background-color");
+      e.style.setProperty("background-image", gradient);
     }
-    //end color text
+  }
+  //end background color of p tags
 
-    //mess up margins
-    for (e of document.getElementsByTagName("p")) {
-      margins = Math.round(Math.random() * 200 - 100);
-      margins = margins + "px";
-      padding = Math.round(Math.random() * 200 - 100);
-      padding = padding + "px";
-      width = Math.round(Math.random() * 500 - 250);
-      width = width + "px";
-      height = Math.round(Math.random() * 500 - 250);
-      height = height + "px";
-      e.style.setProperty("margin", margins);
-      e.style.setProperty("padding", padding);
-      e.style.setProperty("width", width);
-      e.style.setProperty("height", height);
-    }
-    //end margins
+  //color of text
+  for (e of document.getElementsByTagName("p")) {
+    var c =
+      "rgb(" +
+      Math.floor(Math.random() * 255) +
+      "," +
+      Math.floor(Math.random() * 255) +
+      "," +
+      Math.floor(Math.random() * 255) +
+      ")";
+    e.style.setProperty("color", c);
+  }
+  //end color text
+
+  //mess up margins
+  for (e of document.getElementsByTagName("p")) {
+    margins = Math.round(Math.random() * 200 - 100);
+    margins = margins + "px";
+    padding = Math.round(Math.random() * 200 - 100);
+    padding = padding + "px";
+    width = Math.round(Math.random() * 500 - 250);
+    width = width + "px";
+    height = Math.round(Math.random() * 500 - 250);
+    height = height + "px";
+    e.style.setProperty("margin", margins);
+    e.style.setProperty("padding", padding);
+    e.style.setProperty("width", width);
+    e.style.setProperty("height", height);
+  }
+  //end margins
 }
 
 //Mess up text (Not in use)
