@@ -1,5 +1,10 @@
 console.log("Web Scramblyfier is loaded");
 
+function randomInt(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 //get data from popup
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   console.log(
@@ -19,6 +24,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   } else if (request.greeting === "scramble_p") {
     console.log("scramble P tags!");
     scrambleP();
+  } else {
+    scrambleCustom(request.greeting);
   }
 });
 
@@ -669,51 +676,677 @@ function scrambleP() {
   //end margins
 }
 
-//Mess up text (Not in use)
-/*
-characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-for (e of document.getElementsByTagName("p")) {
-  var text = e,
-  result1 = '',
-  length = Math.round(Math.random() * 60 + 5);
-  for ( var i = 0; i < length; i++ ) {
-    result1 += characters.charAt( Math.round(Math.random() *62) );
+function scrambleCustom(message) {
+  console.log("Scrambling Custom");
+
+  //if Divs are checked
+  if (message.scrambled_elements_divs) {
+    console.log("scrambling Divs")
+    for (e of document.getElementsByTagName("div")) {
+      //if bg color is checked
+      if (message.scrambled_css_bg_color) {
+        //if bg type is solid
+        if (message.bg_type == "solid") {
+          var c =
+            "rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            ")";
+          e.style.setProperty("background-color", c);
+        } else if (message.bg_type == "gradient") {
+          //if bg type is gradient
+          var c1 =
+            "linear-gradient(rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            ")";
+          var c2 =
+            "rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            "))";
+          var gradient = c1 + c2;
+          e.style.removeProperty("background-color");
+          e.style.setProperty("background-image", gradient);
+        } else if (message.bg_type == "mixed") {
+          //if bg type is mixed
+          var boolean = Math.round(Math.random());
+          if (boolean > 0.5) {
+            //generates a random solid rgb background color
+            var c =
+              "rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              ")";
+            e.style.setProperty("background-color", c);
+          } else {
+            //generates a random gradient
+            var c1 =
+              "linear-gradient(rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              ")";
+            var c2 =
+              "rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              "))";
+            var gradient = c1 + c2;
+            e.style.removeProperty("background-color");
+            e.style.setProperty("background-image", gradient);
+          }
+        }
+      } 
+      //if content color is checked
+      if(message.scrambled_css_content_color){
+          var c =
+          "rgb(" +
+          randomInt(message.content_r_min, message.content_r_max) +
+          "," +
+          randomInt(message.content_g_min, message.content_g_max) +
+          "," +
+          randomInt(message.content_b_min, message.content_b_max) +
+          ")";
+        e.style.setProperty("color", c);
+      }
+      //if margins is checked
+      if(message.scrambled_css_margins){
+        margins = randomInt(message.margins_min, message.margins_max);
+        margins = margins + "px";
+        e.style.setProperty("margin", margins);
+      }
+      //if padding is checked
+      if(message.scrambled_css_padding){
+      padding = randomInt(message.padding_min, message.padding_max);
+        padding = padding + "px";
+        e.style.setProperty("padding", padding);
+      }
+      //if width is checked
+      if(message.scrambled_css_width){
+      width = randomInt(message.width_min, message.width_max);
+      width = width + "px";
+      e.style.setProperty("width", width);
+    }
+      //if height is checked
+      if(message.scrambled_css_height){
+      height = randomInt(message.height_min, message.height_max);
+      height = height + "px";
+      e.style.setProperty("height", height);
+    }
+    }
   }
-  text.innerHTML = result1;
-}
-for (e of document.getElementsByTagName("li")) {
-  var result2 = '',
-  length = Math.round(Math.random() * 60 + 5);
-  for ( var i = 0; i < length; i++ ) {
-    result2 += characters.charAt( Math.round(Math.random() * 62) );
+    //if P tags are checked
+  if (message.scrambled_elements_p) {
+    for (e of document.getElementsByTagName("p")) {
+      //if bg color is checked
+      if (message.scrambled_css_bg_color) {
+        //if bg type is solid
+        if (message.bg_type == "solid") {
+          var c =
+            "rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            ")";
+          e.style.setProperty("background-color", c);
+        } else if (message.bg_type == "gradient") {
+          //if bg type is gradient
+          var c1 =
+            "linear-gradient(rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            ")";
+          var c2 =
+            "rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            "))";
+          var gradient = c1 + c2;
+          e.style.removeProperty("background-color");
+          e.style.setProperty("background-image", gradient);
+        } else if (message.bg_type == "mixed") {
+          //if bg type is mixed
+          var boolean = Math.round(Math.random());
+          if (boolean > 0.5) {
+            //generates a random solid rgb background color
+            var c =
+              "rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              ")";
+            e.style.setProperty("background-color", c);
+          } else {
+            //generates a random gradient
+            var c1 =
+              "linear-gradient(rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              ")";
+            var c2 =
+              "rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              "))";
+            var gradient = c1 + c2;
+            e.style.removeProperty("background-color");
+            e.style.setProperty("background-image", gradient);
+          }
+        }
+      } 
+      //if content color is checked
+      if(message.scrambled_css_content_color){
+          var c =
+          "rgb(" +
+          randomInt(message.content_r_min, message.content_r_max) +
+          "," +
+          randomInt(message.content_g_min, message.content_g_max) +
+          "," +
+          randomInt(message.content_b_min, message.content_b_max) +
+          ")";
+        e.style.setProperty("color", c);
+      }
+      //if margins is checked
+      if(message.scrambled_css_margins){
+        margins = randomInt(message.margins_min, message.margins_max);
+        margins = margins + "px";
+        e.style.setProperty("margin", margins);
+      }
+      //if padding is checked
+      if(message.scrambled_css_padding){
+      padding = randomInt(message.padding_min, message.padding_max);
+        padding = padding + "px";
+        e.style.setProperty("padding", padding);
+      }
+      //if width is checked
+      if(message.scrambled_css_width){
+      width = randomInt(message.width_min, message.width_max);
+      width = width + "px";
+      e.style.setProperty("width", width);
+    }
+      //if height is checked
+      if(message.scrambled_css_height){
+      height = randomInt(message.height_min, message.height_max);
+      height = height + "px";
+      e.style.setProperty("height", height);
+    }
+    }
+  }
+    //if headers are checked
+  if (message.scrambled_elements_headers) {
+    for (e of document.getElementsByTagName("h1")) {
+      //if bg color is checked
+      if (message.scrambled_css_bg_color) {
+        //if bg type is solid
+        if (message.bg_type == "solid") {
+          var c =
+            "rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            ")";
+          e.style.setProperty("background-color", c);
+        } else if (message.bg_type == "gradient") {
+          //if bg type is gradient
+          var c1 =
+            "linear-gradient(rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            ")";
+          var c2 =
+            "rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            "))";
+          var gradient = c1 + c2;
+          e.style.removeProperty("background-color");
+          e.style.setProperty("background-image", gradient);
+        } else if (message.bg_type == "mixed") {
+          //if bg type is mixed
+          var boolean = Math.round(Math.random());
+          if (boolean > 0.5) {
+            //generates a random solid rgb background color
+            var c =
+              "rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              ")";
+            e.style.setProperty("background-color", c);
+          } else {
+            //generates a random gradient
+            var c1 =
+              "linear-gradient(rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              ")";
+            var c2 =
+              "rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              "))";
+            var gradient = c1 + c2;
+            e.style.removeProperty("background-color");
+            e.style.setProperty("background-image", gradient);
+          }
+        }
+      } 
+      //if content color is checked
+      if(message.scrambled_css_content_color){
+          var c =
+          "rgb(" +
+          randomInt(message.content_r_min, message.content_r_max) +
+          "," +
+          randomInt(message.content_g_min, message.content_g_max) +
+          "," +
+          randomInt(message.content_b_min, message.content_b_max) +
+          ")";
+        e.style.setProperty("color", c);
+      }
+      //if margins is checked
+      if(message.scrambled_css_margins){
+        margins = randomInt(message.margins_min, message.margins_max);
+        margins = margins + "px";
+        e.style.setProperty("margin", margins);
+      }
+      //if padding is checked
+      if(message.scrambled_css_padding){
+      padding = randomInt(message.padding_min, message.padding_max);
+        padding = padding + "px";
+        e.style.setProperty("padding", padding);
+      }
+      //if width is checked
+      if(message.scrambled_css_width){
+      width = randomInt(message.width_min, message.width_max);
+      width = width + "px";
+      e.style.setProperty("width", width);
+    }
+      //if height is checked
+      if(message.scrambled_css_height){
+      height = randomInt(message.height_min, message.height_max);
+      height = height + "px";
+      e.style.setProperty("height", height);
+    }
+    }
+    for (e of document.getElementsByTagName("h2")) {
+      //if bg color is checked
+      if (message.scrambled_css_bg_color) {
+        //if bg type is solid
+        if (message.bg_type == "solid") {
+          var c =
+            "rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            ")";
+          e.style.setProperty("background-color", c);
+        } else if (message.bg_type == "gradient") {
+          //if bg type is gradient
+          var c1 =
+            "linear-gradient(rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            ")";
+          var c2 =
+            "rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            "))";
+          var gradient = c1 + c2;
+          e.style.removeProperty("background-color");
+          e.style.setProperty("background-image", gradient);
+        } else if (message.bg_type == "mixed") {
+          //if bg type is mixed
+          var boolean = Math.round(Math.random());
+          if (boolean > 0.5) {
+            //generates a random solid rgb background color
+            var c =
+              "rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              ")";
+            e.style.setProperty("background-color", c);
+          } else {
+            //generates a random gradient
+            var c1 =
+              "linear-gradient(rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              ")";
+            var c2 =
+              "rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              "))";
+            var gradient = c1 + c2;
+            e.style.removeProperty("background-color");
+            e.style.setProperty("background-image", gradient);
+          }
+        }
+      } 
+      //if content color is checked
+      if(message.scrambled_css_content_color){
+          var c =
+          "rgb(" +
+          randomInt(message.content_r_min, message.content_r_max) +
+          "," +
+          randomInt(message.content_g_min, message.content_g_max) +
+          "," +
+          randomInt(message.content_b_min, message.content_b_max) +
+          ")";
+        e.style.setProperty("color", c);
+      }
+      //if margins is checked
+      if(message.scrambled_css_margins){
+        margins = randomInt(message.margins_min, message.margins_max);
+        margins = margins + "px";
+        e.style.setProperty("margin", margins);
+      }
+      //if padding is checked
+      if(message.scrambled_css_padding){
+      padding = randomInt(message.padding_min, message.padding_max);
+        padding = padding + "px";
+        e.style.setProperty("padding", padding);
+      }
+      //if width is checked
+      if(message.scrambled_css_width){
+      width = randomInt(message.width_min, message.width_max);
+      width = width + "px";
+      e.style.setProperty("width", width);
+    }
+      //if height is checked
+      if(message.scrambled_css_height){
+      height = randomInt(message.height_min, message.height_max);
+      height = height + "px";
+      e.style.setProperty("height", height);
+    }
+    }
+    for (e of document.getElementsByTagName("h3")) {
+      //if bg color is checked
+      if (message.scrambled_css_bg_color) {
+        //if bg type is solid
+        if (message.bg_type == "solid") {
+          var c =
+            "rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            ")";
+          e.style.setProperty("background-color", c);
+        } else if (message.bg_type == "gradient") {
+          //if bg type is gradient
+          var c1 =
+            "linear-gradient(rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            ")";
+          var c2 =
+            "rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            "))";
+          var gradient = c1 + c2;
+          e.style.removeProperty("background-color");
+          e.style.setProperty("background-image", gradient);
+        } else if (message.bg_type == "mixed") {
+          //if bg type is mixed
+          var boolean = Math.round(Math.random());
+          if (boolean > 0.5) {
+            //generates a random solid rgb background color
+            var c =
+              "rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              ")";
+            e.style.setProperty("background-color", c);
+          } else {
+            //generates a random gradient
+            var c1 =
+              "linear-gradient(rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              ")";
+            var c2 =
+              "rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              "))";
+            var gradient = c1 + c2;
+            e.style.removeProperty("background-color");
+            e.style.setProperty("background-image", gradient);
+          }
+        }
+      } 
+      //if content color is checked
+      if(message.scrambled_css_content_color){
+          var c =
+          "rgb(" +
+          randomInt(message.content_r_min, message.content_r_max) +
+          "," +
+          randomInt(message.content_g_min, message.content_g_max) +
+          "," +
+          randomInt(message.content_b_min, message.content_b_max) +
+          ")";
+        e.style.setProperty("color", c);
+      }
+      //if margins is checked
+      if(message.scrambled_css_margins){
+        margins = randomInt(message.margins_min, message.margins_max);
+        margins = margins + "px";
+        e.style.setProperty("margin", margins);
+      }
+      //if padding is checked
+      if(message.scrambled_css_padding){
+      padding = randomInt(message.padding_min, message.padding_max);
+        padding = padding + "px";
+        e.style.setProperty("padding", padding);
+      }
+      //if width is checked
+      if(message.scrambled_css_width){
+      width = randomInt(message.width_min, message.width_max);
+      width = width + "px";
+      e.style.setProperty("width", width);
+    }
+      //if height is checked
+      if(message.scrambled_css_height){
+      height = randomInt(message.height_min, message.height_max);
+      height = height + "px";
+      e.style.setProperty("height", height);
+    }
+    }
+    for (e of document.getElementsByTagName("h4")) {
+      //if bg color is checked
+      if (message.scrambled_css_bg_color) {
+        //if bg type is solid
+        if (message.bg_type == "solid") {
+          var c =
+            "rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            ")";
+          e.style.setProperty("background-color", c);
+        } else if (message.bg_type == "gradient") {
+          //if bg type is gradient
+          var c1 =
+            "linear-gradient(rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            ")";
+          var c2 =
+            "rgb(" +
+            randomInt(message.bg_r_min, message.bg_r_max) +
+            "," +
+            randomInt(message.bg_g_min, message.bg_g_max) +
+            "," +
+            randomInt(message.bg_b_min, message.bg_b_max) +
+            "))";
+          var gradient = c1 + c2;
+          e.style.removeProperty("background-color");
+          e.style.setProperty("background-image", gradient);
+        } else if (message.bg_type == "mixed") {
+          //if bg type is mixed
+          var boolean = Math.round(Math.random());
+          if (boolean > 0.5) {
+            //generates a random solid rgb background color
+            var c =
+              "rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              ")";
+            e.style.setProperty("background-color", c);
+          } else {
+            //generates a random gradient
+            var c1 =
+              "linear-gradient(rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              ")";
+            var c2 =
+              "rgb(" +
+              randomInt(message.bg_r_min, message.bg_r_max) +
+              "," +
+              randomInt(message.bg_g_min, message.bg_g_max) +
+              "," +
+              randomInt(message.bg_b_min, message.bg_b_max) +
+              "))";
+            var gradient = c1 + c2;
+            e.style.removeProperty("background-color");
+            e.style.setProperty("background-image", gradient);
+          }
+        }
+      } 
+      //if content color is checked
+      if(message.scrambled_css_content_color){
+          var c =
+          "rgb(" +
+          randomInt(message.content_r_min, message.content_r_max) +
+          "," +
+          randomInt(message.content_g_min, message.content_g_max) +
+          "," +
+          randomInt(message.content_b_min, message.content_b_max) +
+          ")";
+        e.style.setProperty("color", c);
+      }
+      //if margins is checked
+      if(message.scrambled_css_margins){
+        margins = randomInt(message.margins_min, message.margins_max);
+        margins = margins + "px";
+        e.style.setProperty("margin", margins);
+      }
+      //if padding is checked
+      if(message.scrambled_css_padding){
+      padding = randomInt(message.padding_min, message.padding_max);
+        padding = padding + "px";
+        e.style.setProperty("padding", padding);
+      }
+      //if width is checked
+      if(message.scrambled_css_width){
+      width = randomInt(message.width_min, message.width_max);
+      width = width + "px";
+      e.style.setProperty("width", width);
+    }
+      //if height is checked
+      if(message.scrambled_css_height){
+      height = randomInt(message.height_min, message.height_max);
+      height = height + "px";
+      e.style.setProperty("height", height);
+    }
+    }
   }
 }
-for (e of document.getElementsByTagName("h1")) {
-  var text = e,
-  result3 = '',
-  length = Math.round(Math.random() * 60 + 5);
-  for ( var i = 0; i < length; i++ ) {
-    result3 += characters.charAt( Math.round(Math.random() * 62) );
-  }
-  text.innerHTML = result3;
-}
-for (e of document.getElementsByTagName("a")) {
-  var text = e,
-  result4 = '',
-  length = Math.round(Math.random() * 60 + 5);
-  for ( var i = 0; i < length; i++ ) {
-    result4 += characters.charAt( Math.round(Math.random() * 62) );
-  }
-  text.innerHTML = result4;
-}
-for (e of document.getElementsByTagName("h2", "h3", "h4", "h5", "h6")) {
-  var text = e,
-  result5 = '',
-  length = Math.round(Math.random() * 60 + 5);
-  for ( var i = 0; i < length; i++ ) {
-    result5 += characters.charAt( Math.round(Math.random() * 62) );
-  }
-  text.innerHTML = result5;
-}
-*/
-//end text

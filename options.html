@@ -10,7 +10,8 @@
       <button id="full_scramble_button"><h2>Scramble Everything!</h2></button>
       <br />
     </div>
-    <br />
+    <br/>
+    <!-- Presets -->
     <div class="rows">
       <button class="individual_scramble" id="div_scramble_button">
         <h4>Scramble Divs!</h4>
@@ -30,7 +31,7 @@
         <div class="center">
           <p>Unfinished, to be released at a later date</p>
           <br />
-          <button class="custom_scramble" id="scramble_button">
+          <button class="custom_scramble" id="custom_scramble_button">
             <h4>Custom Scramble</h4>
           </button>
           <!-- Toggles for scrambly selection -->
@@ -38,54 +39,50 @@
             <div class="columns">
               <h5>Scrambled Elements</h5>
               <label>
-                <input type="checkbox" id="custom_all" />
+                <input type="checkbox" id="custom_elements_all" />
                 All Elements
               </label>
               <label>
-                <input type="checkbox" id="custom_all" />
+                <input type="checkbox" id="custom_elements_divs" />
                 Divs
               </label>
               <label>
-                <input type="checkbox" id="custom_all" />
+                <input type="checkbox" id="custom_elements_p" />
                 P Tags
               </label>
               <label>
-                <input type="checkbox" id="custom_all" />
+                <input type="checkbox" id="custom_elements_headers" />
                 Headers
-              </label>
-              <label>
-                <input type="checkbox" id="custom_all" />
-                A tags
               </label>
             </div>
             <div class="columns">
               <h5>Scrambled CSS</h5>
               <label>
-                <input type="checkbox" id="custom_all" />
+                <input type="checkbox" id="custom_css_all" />
                 all CSS
               </label>
               <label>
-                <input type="checkbox" id="custom_all" />
+                <input type="checkbox" id="custom_css_bg_color" />
                 Background Color
               </label>
               <label>
-                <input type="checkbox" id="custom_all" />
-                Color
+                <input type="checkbox" id="custom_css_content_color" />
+                Content Color
               </label>
               <label>
-                <input type="checkbox" id="custom_all" />
+                <input type="checkbox" id="custom_css_margins" />
                 Margins
               </label>
               <label>
-                <input type="checkbox" id="custom_all" />
+                <input type="checkbox" id="custom_css_padding" />
                 Padding
               </label>
               <label>
-                <input type="checkbox" id="custom_all" />
+                <input type="checkbox" id="custom_css_width" />
                 Width
               </label>
               <label>
-                <input type="checkbox" id="custom_all" />
+                <input type="checkbox" id="custom_css_height" />
                 Height
               </label>
             </div>
@@ -93,13 +90,13 @@
           <!-- End toggles for scrambly selection -->
           <br />
           <div class="linebreak"></div>
-          <!-- Sliders for scrambly parameters -->
+          <!-- Inputs for scrambly parameters -->
           <h5>Background Type</h5>
           <div class="rows">
             <select id="custom_bg_type">
-              <option value="custom_bg_type_solid">Solid</option>
-              <option value="custom_bg_type_gradient">Gradient</option>
-              <option value="custom_bg_type_mixed">Mixed</option>
+              <option value="solid">Solid</option>
+              <option value="gradient">Gradient</option>
+              <option value="mixed">Mixed</option>
             </select>
           </div>
           <br />
@@ -107,22 +104,64 @@
           <h5>Background Colors (0 to 255)</h5>
           <div class="rows">
             <div class="columns">
-              <p>R Min</p>
-              <input type="number" id="custom_bg_r_min" name="custom_bg_r_min" min="0" max="255" value="0">
-              <p>R Max</p>
-              <input type="number" id="custom_bg_r_max" name="custom_bg_r_max" min="0" max="255" value="255">
+              <p>Red Min</p>
+              <input
+                type="number"
+                id="custom_bg_r_min"
+                name="custom_bg_r_min"
+                min="0"
+                max="255"
+                value="0"
+              />
+              <p>Red Max</p>
+              <input
+                type="number"
+                id="custom_bg_r_max"
+                name="custom_bg_r_max"
+                min="0"
+                max="255"
+                value="255"
+              />
             </div>
             <div class="columns">
-              <p>G Min</p>
-              <input type="number" id="custom_bg_g_min" name="custom_bg_g_min" min="0" max="255" value="0">
-              <p>G Max</p>
-              <input type="number" id="custom_bg_g_max" name="custom_bg_g_max" min="0" max="255" value="255">
+              <p>Green Min</p>
+              <input
+                type="number"
+                id="custom_bg_g_min"
+                name="custom_bg_g_min"
+                min="0"
+                max="255"
+                value="0"
+              />
+              <p>Green Max</p>
+              <input
+                type="number"
+                id="custom_bg_g_max"
+                name="custom_bg_g_max"
+                min="0"
+                max="255"
+                value="255"
+              />
             </div>
             <div class="columns">
-              <p>B Min</p>
-              <input type="number" id="custom_bg_b_min" name="custom_bg_b_min" min="0" max="255" value="0">
-              <p>B Max</p>
-              <input type="number" id="custom_bg_b_max" name="custom_bg_b_max" min="0" max="255" value="255">
+              <p>Blue Min</p>
+              <input
+                type="number"
+                id="custom_bg_b_min"
+                name="custom_bg_b_min"
+                min="0"
+                max="255"
+                value="0"
+              />
+              <p>Blue Max</p>
+              <input
+                type="number"
+                id="custom_bg_b_max"
+                name="custom_bg_b_max"
+                min="0"
+                max="255"
+                value="255"
+              />
             </div>
           </div>
           <br />
@@ -130,70 +169,169 @@
           <h5>Content Colors (0 to 255)</h5>
           <div class="rows">
             <div class="columns">
-              <p>R Min</p>
-              <input type="number" id="custom_content_r_min" name="custom_content_r_min" min="0" max="255" value="0">
-              <p>R Max</p>
-              <input type="number" id="custom_content_r_max" name="custom_content_r_max" min="0" max="255" value="255">
+              <p>Red Min</p>
+              <input
+                type="number"
+                id="custom_content_r_min"
+                name="custom_content_r_min"
+                min="0"
+                max="255"
+                value="0"
+              />
+              <p>Red Max</p>
+              <input
+                type="number"
+                id="custom_content_r_max"
+                name="custom_content_r_max"
+                min="0"
+                max="255"
+                value="255"
+              />
             </div>
             <div class="columns">
-              <p>G Min</p>
-              <input type="number" id="custom_content_g_min" name="custom_content_g_min" min="0" max="255" value="0">
-              <p>G Max</p>
-              <input type="number" id="custom_content_g_max" name="custom_content_g_max" min="0" max="255" value="255">
+              <p>Green Min</p>
+              <input
+                type="number"
+                id="custom_content_g_min"
+                name="custom_content_g_min"
+                min="0"
+                max="255"
+                value="0"
+              />
+              <p>Green Max</p>
+              <input
+                type="number"
+                id="custom_content_g_max"
+                name="custom_content_g_max"
+                min="0"
+                max="255"
+                value="255"
+              />
             </div>
             <div class="columns">
-              <p>B Min</p>
-              <input type="number" id="custom_content_b_min" name="quantity" min="0" max="255" value="0">
-              <p>B Max</p>
-              <input type="number" id="custom_content_b_max" name="quantity" min="0" max="255" value="255">
+              <p>Blue Min</p>
+              <input
+                type="number"
+                id="custom_content_b_min"
+                name="custom_content_b_min"
+                min="0"
+                max="255"
+                value="0"
+              />
+              <p>Blue Max</p>
+              <input
+                type="number"
+                id="custom_content_b_max"
+                name="custom_content_b_max"
+                min="0"
+                max="255"
+                value="255"
+              />
             </div>
           </div>
           <br />
           <div class="linebreak"></div>
+          <!-- Margins & Padding -->
           <div class="rows">
             <div class="columns">
-              <h5 style="margin-bottom: 0px; border-bottom: 0px;">Margins</h5>
-              <h5 style="margin-top: 0px;">(-300 to 300)</h5>
+              <h5 style="margin-bottom: 0px; border-bottom: 0px">Margins</h5>
+              <h5 style="margin-top: 0px">(-300 to 300)</h5>
               <p>Margins Min</p>
-              <input type="number" id="custom_margins_min" name="custom_margins_min" min="-300" max="300" value="-100">
+              <input
+                type="number"
+                id="custom_margins_min"
+                name="custom_margins_min"
+                min="-300"
+                max="300"
+                value="-100"
+              />
               <p>Margins Max</p>
-              <input type="number" id="custom_margins_max" name="custom_margins_max" min="-300" max="300" value="100">
+              <input
+                type="number"
+                id="custom_margins_max"
+                name="custom_margins_max"
+                min="-300"
+                max="300"
+                value="100"
+              />
             </div>
             <div class="columns">
-              <h5 style="margin-bottom: 0px; border-bottom: 0px;">Padding</h5>
-              <h5 style="margin-top: 0px;">(-300 to 300)</h5>
-              <p>Margins Min</p>
-              <input type="number" id="custom_padding_min" name="custom_padding_min" min="-300" max="300" value="-100">
-              <p>Margins Max</p>
-              <input type="number" id="custom_padding_max" name="custom_padding_max" min="-300" max="300" value="100">
+              <h5 style="margin-bottom: 0px; border-bottom: 0px">Padding</h5>
+              <h5 style="margin-top: 0px">(-300 to 300)</h5>
+              <p>Padding Min</p>
+              <input
+                type="number"
+                id="custom_padding_min"
+                name="custom_padding_min"
+                min="-300"
+                max="300"
+                value="-100"
+              />
+              <p>Padding Max</p>
+              <input
+                type="number"
+                id="custom_padding_max"
+                name="custom_padding_max"
+                min="-300"
+                max="300"
+                value="100"
+              />
             </div>
           </div>
           <br />
           <div class="linebreak"></div>
-
+          <!-- Width & Height -->
           <div class="rows">
             <div class="columns">
-              <h5 style="margin-bottom: 0px; border-bottom: 0px;">Width</h5>
-              <h5 style="margin-top: 0px;">(0 to 500)</h5>
+              <h5 style="margin-bottom: 0px; border-bottom: 0px">Width</h5>
+              <h5 style="margin-top: 0px">(0 to 500)</h5>
               <p>Width Min</p>
-              <input type="number" id="custom_width_min" name="custom_width_min" min="0" max="500" value="50">
+              <input
+                type="number"
+                id="custom_width_min"
+                name="custom_width_min"
+                min="0"
+                max="500"
+                value="50"
+              />
               <p>Width Max</p>
-              <input type="number" id="custom_width_max" name="custom_width_max" min="0" max="500" value="300">
+              <input
+                type="number"
+                id="custom_width_max"
+                name="custom_width_max"
+                min="0"
+                max="500"
+                value="300"
+              />
             </div>
             <div class="columns">
-              <h5 style="margin-bottom: 0px; border-bottom: 0px;">Height</h5>
-              <h5 style="margin-top: 0px;">(0 to 500)</h5>
+              <h5 style="margin-bottom: 0px; border-bottom: 0px">Height</h5>
+              <h5 style="margin-top: 0px">(0 to 500)</h5>
               <p>Height Min</p>
-              <input type="number" id="custom_height_min" name="custom_height_min" min="0" max="500" value="50">
+              <input
+                type="number"
+                id="custom_height_min"
+                name="custom_height_min"
+                min="0"
+                max="500"
+                value="50"
+              />
               <p>Height Max</p>
-              <input type="number" id="custom_height_max" name="custom_height_max" min="0" max="500" value="300">
+              <input
+                type="number"
+                id="custom_height_max"
+                name="custom_height_max"
+                min="0"
+                max="500"
+                value="300"
+              />
             </div>
           </div>
-          <br>
+          <br />
         </div>
-        <!-- End Sliders for scrambly parameters -->
+        <!-- End Inputs for scrambly parameters -->
 
-        <!-- custom scrambly settings -->
+        <!-- end custom scrambly settings -->
       </div>
     </div>
 
