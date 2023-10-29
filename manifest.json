@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "Web Scrambly-fier WIP",
   "description": "The ultimate web scrambly-fying companion.",
-  "version": "1.0",
-  "permissions": ["storage", "scripting", "activeTab"],
+  "version": "0.8",
+  "permissions": ["storage", "activeTab"],
   "author": "tench@cholnoky.com",  
   "options_ui": {
     "page": "options.html",
@@ -26,6 +26,8 @@
     }
   ],
   "icons": {
-    "128": "images/egg.png"
+    "128": "images/icon-128.png",
+    "64": "images/icon-64.png",
+    "32": "images/icon-32.png"
   }
 }

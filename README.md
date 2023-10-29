@@ -1,7 +1,11 @@
 THE ULTIMATE WEB SCRAMBLYFIER, IT SCRAMBLYFIES EVERYTHING
 
-Links to documentation (for research purposes)
+Currently scrambly modes:
+Everything
+Just Divs
+Just Headers (h1-5)
+Just p tags
 
-Passing messages: https://developer.chrome.com/docs/extensions/mv3/messaging/
-https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/
-
+To Do:
+Add Developer tools
+make pop up pretty
