@@ -1,11 +1,18 @@
-THE ULTIMATE WEB SCRAMBLYFIER, IT SCRAMBLYFIES EVERYTHING
 
-Currently scrambly modes:
-Everything
-Just Divs
-Just Headers (h1-5)
-Just p tags
+## Web Scramblyfier
 
-To Do:
-Add Developer tools
-make pop up pretty
+### Currently scrambly modes:
+
+1. Everything
+
+2. Just Divs
+
+3. Just Headers (h1-5)
+
+4. Just p tags
+
+
+### To Do:
+1. Add Developer tools
+
+2. make pop up pretty
