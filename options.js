@@ -1,78 +1,87 @@
-(async () => {
-  const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
-  const response = await chrome.tabs.sendMessage(tab.id, {greeting: "hello"});
-  // do something with response here, not outside the function
+//async function to send what to scramble to embedded javascript
+async function sendMessageToActiveTab(sent_message) {
+  const [tab] = await chrome.tabs.query({
+    active: true,
+    lastFocusedWindow: true,
+  });
+  const response = await chrome.tabs.sendMessage(tab.id, {
+    //send the message
+    greeting: sent_message,
+  });
   console.log(response);
+}
+
+//On button presses
+let full_scramble_button = document.getElementById("full_scramble_button");
+full_scramble_button.addEventListener("click", async () => {
+  const data = await sendMessageToActiveTab("scramble_all");
 });
-// Saves options to chrome.storage
-const saveOptions = () => {
-  const color = document.getElementById('color').value;
-  const likesColor = document.getElementById('like').checked;
 
-  chrome.storage.sync.set(
-    { favoriteColor: color, likesColor: likesColor },
-    () => {
-      // Update status to let user know options were saved.
-      const status = document.getElementById('status');
-      status.textContent = 'Options saved.';
-      setTimeout(() => {
-        status.textContent = '';
-      }, 750);
-    }
-  );
-};
+let div_scramble_button = document.getElementById("div_scramble_button");
+div_scramble_button.addEventListener("click", async () => {
+  const data = await sendMessageToActiveTab("scramble_div");
+});
 
-// Restores select box and checkbox state using the preferences
-// stored in chrome.storage.
-const restoreOptions = () => {
-  chrome.storage.sync.get(
-    { favoriteColor: 'red', likesColor: true },
-    (items) => {
-      document.getElementById('color').value = items.favoriteColor;
-      document.getElementById('like').checked = items.likesColor;
-    }
-  );
-};
+let header_scramble_button = document.getElementById("header_scramble_button");
+header_scramble_button.addEventListener("click", async () => {
+  const data = await sendMessageToActiveTab("scramble_header");
+});
 
-document.addEventListener('DOMContentLoaded', restoreOptions);
-document.getElementById('save').addEventListener('click', saveOptions);
+let p_scramble_button = document.getElementById("p_scramble_button");
+p_scramble_button.addEventListener("click", async () => {
+  const data = await sendMessageToActiveTab("scramble_p");
+});
+
+//display dev tools
+let display = document.getElementById("dev_tools");
+display.style.display = "none";
+
+let dev = document.getElementById("dev").addEventListener("click", () => {
+  console.log(display);
+  console.log(display.display);
+  if (display.style.display == "flex") {
+    display.style.removeProperty("display");
+    display.style.setProperty("display", "none");
+  } else if (display.style.display == "none") {
+    display.style.removeProperty("display");
+    display.style.setProperty("display", "flex");
+  }
+});
+//end display dev tools
 
 
-// //Buttons for pressing
-// let backgroundElement = document.getElementById('background');
-// let textElement = document.getElementById('text');
-// let textcolorElement = document.getElementById('textcolor');
-// let fontsElement = document.getElementById('fonts');
-// let marginsElement = document.getElementById('margins');
+// // Saves options to chrome.storage (not in use)
 
-// console.log(backgroundElement);
-// console.log(textElement);
-// console.log(textcolorElement);
-// console.log(fontsElement);
-// console.log(marginsElement);
+// const saveOptions = () => {
+//   const color = document.getElementById("color").value;
+//   const likesColor = document.getElementById("like").checked;
 
-// //boolean variables for the toggling, b(boolean)background etc.
-// var bbackground = true,
-// btext = true,
-// btextcolor = true,
-// bfonts = true,
-// bmargins = true;
+//   chrome.storage.sync.set(
+//     { favoriteColor: color, likesColor: likesColor },
+//     () => {
+//       // Update status to let user know options were saved.
+//       const status = document.getElementById("status");
+//       status.textContent = "Options saved.";
+//       setTimeout(() => {
+//         status.textContent = "";
+//       }, 750);
+//     }
+//   );
+// };
 
-// //On click
-// backgroundElement.addEventListener('click', function() {
-//   //toggle the text under currently scrambled
-//   var x = document.getElementById("backgroundtoggle");
-//   if (x.style.display === "none") {
-//     x.style.display = "block";
-//   } else {
-//     x.style.display = "none";
-//   }
-//   //toggle the boolean variable for the element
-//   bbackground = !bbackground
-//   console.log(bbackground);
-//   var backgroundboolean = bbackground;
-//   //supposed to sync the variable's status but doesn't work right now??
-//   chrome.storage.sync.set({backgroundboolean: bbackground}, function() {
-//     console.log('Value is set to ' + backgroundboolean);
-//   });
-// });
+// // Restores select box and checkbox state using the preferences
+// // stored in chrome.storage.
+// const restoreOptions = () => {
+//   chrome.storage.sync.get(
+//     { favoriteColor: "red", likesColor: true },
+//     (items) => {
+//       document.getElementById("color").value = items.favoriteColor;
+//       document.getElementById("like").checked = items.likesColor;
+//     }
+//   );
+// };
+
+// document.addEventListener("DOMContentLoaded", restoreOptions);
+// document.getElementById("save").addEventListener("click", saveOptions);
+
+// // end save options to chrome.storage (not in use)
