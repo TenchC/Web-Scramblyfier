@@ -4,10 +4,15 @@ async function sendMessageToActiveTab(sent_message) {
     active: true,
     lastFocusedWindow: true,
   });
-  const response = await chrome.tabs.sendMessage(tab.id, {
-    //send the message
-    greeting: sent_message,
-  })};
+  if(chrome.runtime.lastError) {
+    setTimeout(ping, 1000);
+  } else {
+    const response = await chrome.tabs.sendMessage(tab.id, {
+      //send the message
+      greeting: sent_message,
+    })
+  }
+  };
 
 //On button presses
 let full_scramble_button = document.getElementById("full_scramble_button");
@@ -132,9 +137,7 @@ class custom_scramble {
   }
 }
 
-/*********************************************/
-//HERE IS WHERE SLIDERS AND BUTTONS AND DEV TOOLS GO
-
+//Dev tools
 let custom_scramble_button = document.getElementById("custom_scramble_button");
 custom_scramble_button.addEventListener("click", async () => {
   //get all data from dev tools and make into a new message
@@ -176,8 +179,8 @@ custom_scramble_button.addEventListener("click", async () => {
   console.log(custom_message)
   const data = await sendMessageToActiveTab(custom_message);
 });
-/*********************************************/
 
+/*********************************************/
 // // Saves options to chrome.storage (not in use, but for saving custom scrambly presets in future)
 
 // const saveOptions = () => {
@@ -211,5 +214,5 @@ custom_scramble_button.addEventListener("click", async () => {
 
 // document.addEventListener("DOMContentLoaded", restoreOptions);
 // document.getElementById("save").addEventListener("click", saveOptions);
-
 // // end save options to chrome.storage (not in use)
+/*********************************************/
