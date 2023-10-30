@@ -11,7 +11,8 @@
 
 4. Just p tags
 
+5. Custom Scrambling
+
 
 ### To Do:
-1. have timeout wait to run extension so there's never a finding server issue
-2. make pop up pretty
+1. make pop up pretty
