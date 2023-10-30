@@ -1,5 +1,13 @@
 
-## Web Scramblyfier
+# Web Scramblyfier
+
+## Install Guide
+------------------
+1. Open extensions page in chrome
+2. Turn on developer mode (in top right)
+3. Load unpacked Extension
+4. Select Web Scramblyfier folder
+5. Enable and pin extension
 
 ### Currently scrambly modes:
 
