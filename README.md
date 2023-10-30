@@ -15,4 +15,4 @@
 
 
 ### To Do:
-1. make pop up pretty
+1. Beta Test
