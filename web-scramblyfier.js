@@ -1,8 +1,12 @@
 console.log("Web Scramblyfier is loaded");
 
 function randomInt(min, max) {
-  // min and max included
-  return Math.floor(Math.random() * (max - min + 1) + min);
+  let e = Math.random() * (max - min) + min;
+  e = Math.floor(e)
+  if( e == 0 ){
+    e = 1;
+  }
+ return(e)
 }
 
 //get data from popup
@@ -83,35 +87,6 @@ function scrambleAll() {
     e.style.setProperty("color", c);
   }
   //end color text
-
-  // To mess up fonts (Not in use)
-  /*
-var font1 =  "Arial, Helvetica, sans-serif",
-font2 = "Snell Roundhand, cursive",
-font3 = "fantasy";
-console.log(font1);
-console.log(font2);
-console.log(font3);
-
-for (e of document.getElementsByTagName('*')) {
-  var font = Math.random() * 2,
-  font = Math.round(font),
-  fontsize = Math.random() * 60,
-  fontsize = Math.round(fontsize);
-  fontsize = fontsize + "px";
-  if (font == 0) {
-    e.style.setProperty('font-family',font1);
-    e.style.setProperty('font-size', fontsize);
-  } else if (font == 1) {
-    e.style.setProperty('font-family',font2);
-    e.style.setProperty('font-size', fontsize);
-  } else if (font == 2) {
-    e.style.setProperty('font-family',font3);
-    e.style.setProperty('font-size', fontsize);
-  }
-}
-*/
-  //End fonts
 
   //mess up margins
   for (e of document.getElementsByTagName("p")) {
@@ -677,12 +652,14 @@ function scrambleP() {
 }
 
 function scrambleCustom(message) {
-  console.log("Scrambling Custom");
+  console.log(message);
+  let saved_message = message
 
   //if Divs are checked
   if (message.scrambled_elements_divs) {
     console.log("scrambling Divs")
     for (e of document.getElementsByTagName("div")) {
+      console.log(message.scrambled_css_padding)
       //if bg color is checked
       if (message.scrambled_css_bg_color) {
         //if bg type is solid
@@ -697,6 +674,7 @@ function scrambleCustom(message) {
             ")";
           e.style.setProperty("background-color", c);
         } else if (message.bg_type == "gradient") {
+       
           //if bg type is gradient
           var c1 =
             "linear-gradient(rgb(" +
@@ -707,7 +685,7 @@ function scrambleCustom(message) {
             randomInt(message.bg_b_min, message.bg_b_max) +
             ")";
           var c2 =
-            "rgb(" +
+            ",rgb(" +
             randomInt(message.bg_r_min, message.bg_r_max) +
             "," +
             randomInt(message.bg_g_min, message.bg_g_max) +
@@ -715,6 +693,7 @@ function scrambleCustom(message) {
             randomInt(message.bg_b_min, message.bg_b_max) +
             "))";
           var gradient = c1 + c2;
+          console.log(gradient)
           e.style.removeProperty("background-color");
           e.style.setProperty("background-image", gradient);
         } else if (message.bg_type == "mixed") {
@@ -742,7 +721,7 @@ function scrambleCustom(message) {
               randomInt(message.bg_b_min, message.bg_b_max) +
               ")";
             var c2 =
-              "rgb(" +
+              ", rgb(" +
               randomInt(message.bg_r_min, message.bg_r_max) +
               "," +
               randomInt(message.bg_g_min, message.bg_g_max) +
