@@ -15,15 +15,19 @@
 ### Currently scrambly modes:
 
 1. Everything
-
-2. Just Divs
-
-3. Just Headers (h1-5)
-
-4. Just p tags
-
+2. Divs
+3. Headers (h1-5)
+4. P tags
 5. Custom Scrambling
-
 
 ### To Do:
 1. Beta Test
+2. Add Reset button
+3. Add flex-box options
+
+#### Thank You's + Beta Testers
+-----------------
+Rory Solomon
+Lai Yi Ohlsen
+Shayla Lee
+Gabriella Acquafredda

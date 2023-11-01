@@ -7,17 +7,11 @@ function randomInt(min, max) {
     x = 1;
   }
   console.log("min: " + min + " max: " + max + " randomInt:" + x);
-
   return x;
 }
 
 //get data from popup
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  console.log(
-    sender.tab
-      ? "from a content script:" + sender.tab.url
-      : "from the extension"
-  );
   if (request.greeting === "scramble_all") {
     console.log("scramble Everything!");
     scrambleAll();
@@ -32,6 +26,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     scrambleP();
   } else {
     scrambleCustom(request.greeting);
+    console.log("Custom scramble!");
+    console.log("Custom Params: ");
+    console.log(request.greeting);
   }
 });
 
@@ -50,6 +47,7 @@ function scrambleAll() {
         "," +
         Math.floor(Math.random() * 255) +
         ")";
+      e.style.removeProperty("background-image");
       e.style.setProperty("background-color", c);
     } else {
       //generates a random gradient
@@ -165,6 +163,7 @@ function scrambleDivs() {
         "," +
         Math.floor(Math.random() * 255) +
         ")";
+      e.style.removeProperty("background-image");
       e.style.setProperty("background-color", c);
     } else {
       //generates a random gradient
@@ -224,7 +223,7 @@ function scrambleDivs() {
 }
 
 function scrambleHeaders() {
-  //background color of h1
+  // h1
   for (e of document.getElementsByTagName("h1")) {
     //boolean variable for gradient or block
     var boolean = Math.round(Math.random());
@@ -238,6 +237,7 @@ function scrambleHeaders() {
         "," +
         Math.floor(Math.random() * 255) +
         ")";
+      e.style.removeProperty("background-image");
       e.style.setProperty("background-color", c);
     } else {
       //generates a random gradient
@@ -261,10 +261,36 @@ function scrambleHeaders() {
       e.style.removeProperty("background-color");
       e.style.setProperty("background-image", gradient);
     }
-  }
-  //end background color of h1
+    //content color
+    var c =
+      "rgb(" +
+      Math.floor(Math.random() * 255) +
+      "," +
+      Math.floor(Math.random() * 255) +
+      "," +
+      Math.floor(Math.random() * 255) +
+      ")";
+    e.style.setProperty("color", c);
+    //end content color
 
-  //background color of h2
+    //margins and padding
+    margins = Math.round(Math.random() * 200 - 100);
+    margins = margins + "px";
+    padding = Math.round(Math.random() * 200 - 100);
+    padding = padding + "px";
+    width = Math.round(Math.random() * 500 - 250);
+    width = width + "px";
+    height = Math.round(Math.random() * 500 - 250);
+    height = height + "px";
+    e.style.setProperty("margin", margins);
+    e.style.setProperty("padding", padding);
+    e.style.setProperty("width", width);
+    e.style.setProperty("height", height);
+    //end margins and padding
+  }
+  //end h1
+
+  // h2
   for (e of document.getElementsByTagName("h2")) {
     //boolean variable for gradient or block
     var boolean = Math.round(Math.random());
@@ -301,10 +327,36 @@ function scrambleHeaders() {
       e.style.removeProperty("background-color");
       e.style.setProperty("background-image", gradient);
     }
-  }
-  //end background color of h2
+    //content color h2
+    var c =
+      "rgb(" +
+      Math.floor(Math.random() * 255) +
+      "," +
+      Math.floor(Math.random() * 255) +
+      "," +
+      Math.floor(Math.random() * 255) +
+      ")";
+    e.style.setProperty("color", c);
+    //end content color h2
 
-  //background color of h3
+    //margins h2
+    margins = Math.round(Math.random() * 200 - 100);
+    margins = margins + "px";
+    padding = Math.round(Math.random() * 200 - 100);
+    padding = padding + "px";
+    width = Math.round(Math.random() * 500 - 250);
+    width = width + "px";
+    height = Math.round(Math.random() * 500 - 250);
+    height = height + "px";
+    e.style.setProperty("margin", margins);
+    e.style.setProperty("padding", padding);
+    e.style.setProperty("width", width);
+    e.style.setProperty("height", height);
+    //end margins h2
+  }
+  //end h2
+
+  // h3
   for (e of document.getElementsByTagName("h3")) {
     //boolean variable for gradient or block
     var boolean = Math.round(Math.random());
@@ -341,10 +393,36 @@ function scrambleHeaders() {
       e.style.removeProperty("background-color");
       e.style.setProperty("background-image", gradient);
     }
-  }
-  //end background color of h3
+    //content color h3
+    var c =
+      "rgb(" +
+      Math.floor(Math.random() * 255) +
+      "," +
+      Math.floor(Math.random() * 255) +
+      "," +
+      Math.floor(Math.random() * 255) +
+      ")";
+    e.style.setProperty("color", c);
+    //end content color h3
 
-  //background color of h4
+    //margins h3
+    margins = Math.round(Math.random() * 200 - 100);
+    margins = margins + "px";
+    padding = Math.round(Math.random() * 200 - 100);
+    padding = padding + "px";
+    width = Math.round(Math.random() * 500 - 250);
+    width = width + "px";
+    height = Math.round(Math.random() * 500 - 250);
+    height = height + "px";
+    e.style.setProperty("margin", margins);
+    e.style.setProperty("padding", padding);
+    e.style.setProperty("width", width);
+    e.style.setProperty("height", height);
+    //end margins h3
+  }
+  //end h3
+
+  // h4
   for (e of document.getElementsByTagName("h4")) {
     //boolean variable for gradient or block
     var boolean = Math.round(Math.random());
@@ -381,10 +459,36 @@ function scrambleHeaders() {
       e.style.removeProperty("background-color");
       e.style.setProperty("background-image", gradient);
     }
-  }
-  //end background color of h4
+    //content color h4
+    var c =
+      "rgb(" +
+      Math.floor(Math.random() * 255) +
+      "," +
+      Math.floor(Math.random() * 255) +
+      "," +
+      Math.floor(Math.random() * 255) +
+      ")";
+    e.style.setProperty("color", c);
+    //end content color h4
 
-  //background color of h5
+    //margins h4
+    margins = Math.round(Math.random() * 200 - 100);
+    margins = margins + "px";
+    padding = Math.round(Math.random() * 200 - 100);
+    padding = padding + "px";
+    width = Math.round(Math.random() * 500 - 250);
+    width = width + "px";
+    height = Math.round(Math.random() * 500 - 250);
+    height = height + "px";
+    e.style.setProperty("margin", margins);
+    e.style.setProperty("padding", padding);
+    e.style.setProperty("width", width);
+    e.style.setProperty("height", height);
+    //end margins h4
+  }
+  //end h4
+
+  // h5
   for (e of document.getElementsByTagName("h5")) {
     //boolean variable for gradient or block
     var boolean = Math.round(Math.random());
@@ -421,11 +525,7 @@ function scrambleHeaders() {
       e.style.removeProperty("background-color");
       e.style.setProperty("background-image", gradient);
     }
-  }
-  //end background color of h5
-
-  //color of text of h1
-  for (e of document.getElementsByTagName("h1")) {
+    //content color h5
     var c =
       "rgb(" +
       Math.floor(Math.random() * 255) +
@@ -435,67 +535,9 @@ function scrambleHeaders() {
       Math.floor(Math.random() * 255) +
       ")";
     e.style.setProperty("color", c);
-  }
-  //end color text of h1
+    //end content color h5
 
-  //color of text of h2
-  for (e of document.getElementsByTagName("h2")) {
-    var c =
-      "rgb(" +
-      Math.floor(Math.random() * 255) +
-      "," +
-      Math.floor(Math.random() * 255) +
-      "," +
-      Math.floor(Math.random() * 255) +
-      ")";
-    e.style.setProperty("color", c);
-  }
-  //end color text of h2
-
-  //color of text of h3
-  for (e of document.getElementsByTagName("h3")) {
-    var c =
-      "rgb(" +
-      Math.floor(Math.random() * 255) +
-      "," +
-      Math.floor(Math.random() * 255) +
-      "," +
-      Math.floor(Math.random() * 255) +
-      ")";
-    e.style.setProperty("color", c);
-  }
-  //end color text of h3
-
-  //color of text of h4
-  for (e of document.getElementsByTagName("h4")) {
-    var c =
-      "rgb(" +
-      Math.floor(Math.random() * 255) +
-      "," +
-      Math.floor(Math.random() * 255) +
-      "," +
-      Math.floor(Math.random() * 255) +
-      ")";
-    e.style.setProperty("color", c);
-  }
-  //end color text of h4
-
-  //color of text of h5
-  for (e of document.getElementsByTagName("h5")) {
-    var c =
-      "rgb(" +
-      Math.floor(Math.random() * 255) +
-      "," +
-      Math.floor(Math.random() * 255) +
-      "," +
-      Math.floor(Math.random() * 255) +
-      ")";
-    e.style.setProperty("color", c);
-  }
-  //end color text of h5
-
-  //mess up margins of h1
-  for (e of document.getElementsByTagName("h1")) {
+    //margins h5
     margins = Math.round(Math.random() * 200 - 100);
     margins = margins + "px";
     padding = Math.round(Math.random() * 200 - 100);
@@ -508,76 +550,9 @@ function scrambleHeaders() {
     e.style.setProperty("padding", padding);
     e.style.setProperty("width", width);
     e.style.setProperty("height", height);
+    //end margins h5
   }
-  //end margins of h1
-
-  //mess up margins of h2
-  for (e of document.getElementsByTagName("h2")) {
-    margins = Math.round(Math.random() * 200 - 100);
-    margins = margins + "px";
-    padding = Math.round(Math.random() * 200 - 100);
-    padding = padding + "px";
-    width = Math.round(Math.random() * 500 - 250);
-    width = width + "px";
-    height = Math.round(Math.random() * 500 - 250);
-    height = height + "px";
-    e.style.setProperty("margin", margins);
-    e.style.setProperty("padding", padding);
-    e.style.setProperty("width", width);
-    e.style.setProperty("height", height);
-  }
-  //end margins of h2
-
-  //mess up margins of h3
-  for (e of document.getElementsByTagName("h3")) {
-    margins = Math.round(Math.random() * 200 - 100);
-    margins = margins + "px";
-    padding = Math.round(Math.random() * 200 - 100);
-    padding = padding + "px";
-    width = Math.round(Math.random() * 500 - 250);
-    width = width + "px";
-    height = Math.round(Math.random() * 500 - 250);
-    height = height + "px";
-    e.style.setProperty("margin", margins);
-    e.style.setProperty("padding", padding);
-    e.style.setProperty("width", width);
-    e.style.setProperty("height", height);
-  }
-  //end margins of h3
-
-  //mess up margins of h4
-  for (e of document.getElementsByTagName("h4")) {
-    margins = Math.round(Math.random() * 200 - 100);
-    margins = margins + "px";
-    padding = Math.round(Math.random() * 200 - 100);
-    padding = padding + "px";
-    width = Math.round(Math.random() * 500 - 250);
-    width = width + "px";
-    height = Math.round(Math.random() * 500 - 250);
-    height = height + "px";
-    e.style.setProperty("margin", margins);
-    e.style.setProperty("padding", padding);
-    e.style.setProperty("width", width);
-    e.style.setProperty("height", height);
-  }
-  //end margins of h4
-
-  //mess up margins of h5
-  for (e of document.getElementsByTagName("h5")) {
-    margins = Math.round(Math.random() * 200 - 100);
-    margins = margins + "px";
-    padding = Math.round(Math.random() * 200 - 100);
-    padding = padding + "px";
-    width = Math.round(Math.random() * 500 - 250);
-    width = width + "px";
-    height = Math.round(Math.random() * 500 - 250);
-    height = height + "px";
-    e.style.setProperty("margin", margins);
-    e.style.setProperty("padding", padding);
-    e.style.setProperty("width", width);
-    e.style.setProperty("height", height);
-  }
-  //end margins of h5
+  //end h5
 }
 
 function scrambleP() {
@@ -595,6 +570,7 @@ function scrambleP() {
         "," +
         Math.floor(Math.random() * 255) +
         ")";
+      e.style.removeProperty("background-image");
       e.style.setProperty("background-color", c);
     } else {
       //generates a random gradient
@@ -654,7 +630,7 @@ function scrambleP() {
 }
 
 function scrambleCustom(message) {
-  console.log(message);
+
   let saved_message = message;
   //if all are checked
   if (
@@ -676,6 +652,7 @@ function scrambleCustom(message) {
             "," +
             randomInt(message.bg_b_min, message.bg_b_max) +
             ")";
+          e.style.removeProperty("background-image");
           e.style.setProperty("background-color", c);
         } else if (message.bg_type == "gradient") {
           //if bg type is gradient

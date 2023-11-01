@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Web Scrambly-fier WIP",
+  "name": "Web Scramblyfier",
   "description": "The ultimate web scrambly-fying companion.",
   "version": "0.9",
   "permissions": ["storage", "activeTab"],
