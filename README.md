@@ -27,11 +27,14 @@
 4. functions for each type of scramble
 
     margins(element, min, max){
-        margins = randomInt(min, max);
-        element.style.setProperty("margin", margins);
-    }
-etc
 
+        margins = randomInt(min, max);
+
+        element.style.setProperty("margin", margins);
+
+    }
+
+etc
 
 #### **Thank You's** + *Beta Testers*
 -----------------
