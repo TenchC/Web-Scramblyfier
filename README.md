@@ -26,13 +26,13 @@
 3. Add flex-box options
 4. functions for each type of scramble
 
-    margins(element, min, max){
+        margins(element, min, max){
 
-        margins = randomInt(min, max);
+            margins = randomInt(min, max);
 
-        element.style.setProperty("margin", margins);
+            element.style.setProperty("margin", margins);
 
-    }
+        }
 
 etc
 
