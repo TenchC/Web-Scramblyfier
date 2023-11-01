@@ -25,7 +25,7 @@
 2. Add Reset button
 3. Add flex-box options
 
-#### Thank You's + *Beta Testers*
+#### **Thank You's** + *Beta Testers*
 -----------------
-Rory Solomon, Lai Yi Ohlsen, Gabriella Acquafredda, and *Shayla Lee*
+**Rory Solomon, Lai Yi Ohlsen, Gabriella Acquafredda**, and *Shayla Lee*
 
