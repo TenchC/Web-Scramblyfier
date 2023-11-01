@@ -24,6 +24,14 @@
 1. Beta Test
 2. Add Reset button
 3. Add flex-box options
+4. functions for each type of scramble
+
+    margins(element, min, max){
+        margins = randomInt(min, max);
+        element.style.setProperty("margin", margins);
+    }
+etc
+
 
 #### **Thank You's** + *Beta Testers*
 -----------------

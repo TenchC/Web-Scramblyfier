@@ -1,5 +1,6 @@
 console.log("Web Scramblyfier is loaded");
 
+//function for a random integer, used throughout script
 function randomInt(min, max) {
   let x = Math.random() * (Number(max) - Number(min)) + Number(min);
   x = Math.floor(x);
@@ -41,11 +42,11 @@ function scrambleAll() {
       //generates a random solid rgb background color
       var c =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         ")";
       e.style.removeProperty("background-image");
       e.style.setProperty("background-color", c);
@@ -53,19 +54,19 @@ function scrambleAll() {
       //generates a random gradient
       var c1 =
         "linear-gradient(rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "), ";
       var c2 =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "))";
       var gradient = c1 + c2;
       e.style.removeProperty("background-color");
@@ -78,11 +79,11 @@ function scrambleAll() {
   for (e of document.getElementsByTagName("*")) {
     var c =
       "rgb(" +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       ")";
     e.style.setProperty("color", c);
   }
@@ -90,13 +91,13 @@ function scrambleAll() {
 
   //mess up margins
   for (e of document.getElementsByTagName("p")) {
-    margins = Math.round(Math.random() * 200 - 100);
+    margins = randomInt(-100, 100);
     margins = margins + "px";
-    padding = Math.round(Math.random() * 200 - 100);
+    padding = randomInt(-100, 100);
     padding = padding + "px";
-    width = Math.round(Math.random() * 500 - 250);
+    width = randomInt(-250, 250);
     width = width + "px";
-    height = Math.round(Math.random() * 500 - 250);
+    height = randomInt(-250, 250);
     height = height + "px";
     e.style.setProperty("margin", margins);
     e.style.setProperty("padding", padding);
@@ -104,13 +105,13 @@ function scrambleAll() {
     e.style.setProperty("height", height);
   }
   for (e of document.getElementsByTagName("div")) {
-    margins = Math.round(Math.random() * 500 - 250);
+    margins = randomInt(-250, 250);
     margins = margins + "px";
-    padding = Math.round(Math.random() * 500 - 250);
+    padding = randomInt(-250, 250);
     padding = padding + "px";
-    width = Math.round(Math.random() * 500 - 250);
+    width = randomInt(-250, 250);
     width = width + "px";
-    height = Math.round(Math.random() * 500 - 250);
+    height = randomInt(-250, 250);
     height = height + "px";
     e.style.setProperty("margin", margins);
     e.style.setProperty("padding", padding);
@@ -118,13 +119,13 @@ function scrambleAll() {
     e.style.setProperty("height", height);
   }
   for (e of document.getElementsByTagName("h1")) {
-    margins = Math.round(Math.random() * 200 - 100);
+    margins = randomInt(-100, 100);
     margins = margins + "px";
-    padding = Math.round(Math.random() * 200 - 100);
+    padding = randomInt(-100, 100);
     padding = padding + "px";
-    width = Math.round(Math.random() * 500 - 250);
+    width = randomInt(-250, 250);
     width = width + "px";
-    height = Math.round(Math.random() * 500 - 250);
+    height = randomInt(-250, 250);
     height = height + "px";
     e.style.setProperty("margin", margins);
     e.style.setProperty("padding", padding);
@@ -132,13 +133,13 @@ function scrambleAll() {
     e.style.setProperty("height", height);
   }
   for (e of document.getElementsByTagName("a")) {
-    margins = Math.round(Math.random() * 200 - 100);
+    margins = randomInt(-100, 100);
     margins = margins + "px";
-    padding = Math.round(Math.random() * 200 - 100);
+    padding = randomInt(-100, 100);
     padding = padding + "px";
-    width = Math.round(Math.random() * 500 - 250);
+    width = randomInt(-250, 250);
     width = width + "px";
-    height = Math.round(Math.random() * 500 - 250);
+    height = randomInt(-250, 250);
     height = height + "px";
     e.style.setProperty("margin", margins);
     e.style.setProperty("padding", padding);
@@ -157,11 +158,11 @@ function scrambleDivs() {
       //generates a random solid rgb background color
       var c =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         ")";
       e.style.removeProperty("background-image");
       e.style.setProperty("background-color", c);
@@ -169,19 +170,19 @@ function scrambleDivs() {
       //generates a random gradient
       var c1 =
         "linear-gradient(rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "), ";
       var c2 =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "))";
       var gradient = c1 + c2;
       e.style.removeProperty("background-color");
@@ -194,11 +195,11 @@ function scrambleDivs() {
   for (e of document.getElementsByTagName("div")) {
     var c =
       "rgb(" +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       ")";
     e.style.setProperty("color", c);
   }
@@ -206,13 +207,13 @@ function scrambleDivs() {
 
   //mess up margins
   for (e of document.getElementsByTagName("div")) {
-    margins = Math.round(Math.random() * 500 - 250);
+    margins = randomInt(-250, 250);
     margins = margins + "px";
-    padding = Math.round(Math.random() * 500 - 250);
+    padding = randomInt(-250, 250);
     padding = padding + "px";
-    width = Math.round(Math.random() * 500 - 250);
+    width = randomInt(-250, 250);
     width = width + "px";
-    height = Math.round(Math.random() * 500 - 250);
+    height = randomInt(-250, 250);
     height = height + "px";
     e.style.setProperty("margin", margins);
     e.style.setProperty("padding", padding);
@@ -231,11 +232,11 @@ function scrambleHeaders() {
       //generates a random solid rgb background color
       var c =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         ")";
       e.style.removeProperty("background-image");
       e.style.setProperty("background-color", c);
@@ -243,19 +244,19 @@ function scrambleHeaders() {
       //generates a random gradient
       var c1 =
         "linear-gradient(rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "), ";
       var c2 =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "))";
       var gradient = c1 + c2;
       e.style.removeProperty("background-color");
@@ -264,23 +265,23 @@ function scrambleHeaders() {
     //content color
     var c =
       "rgb(" +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       ")";
     e.style.setProperty("color", c);
     //end content color
 
     //margins and padding
-    margins = Math.round(Math.random() * 200 - 100);
+    margins = randomInt(-100, 100);
     margins = margins + "px";
-    padding = Math.round(Math.random() * 200 - 100);
+    padding = randomInt(-100, 100);
     padding = padding + "px";
-    width = Math.round(Math.random() * 500 - 250);
+    width = randomInt(-250, 250);
     width = width + "px";
-    height = Math.round(Math.random() * 500 - 250);
+    height = randomInt(-250, 250);
     height = height + "px";
     e.style.setProperty("margin", margins);
     e.style.setProperty("padding", padding);
@@ -298,30 +299,30 @@ function scrambleHeaders() {
       //generates a random solid rgb background color
       var c =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         ")";
       e.style.setProperty("background-color", c);
     } else {
       //generates a random gradient
       var c1 =
         "linear-gradient(rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "), ";
       var c2 =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "))";
       var gradient = c1 + c2;
       e.style.removeProperty("background-color");
@@ -330,23 +331,23 @@ function scrambleHeaders() {
     //content color h2
     var c =
       "rgb(" +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       ")";
     e.style.setProperty("color", c);
     //end content color h2
 
     //margins h2
-    margins = Math.round(Math.random() * 200 - 100);
+    margins = randomInt(-100, 100);
     margins = margins + "px";
-    padding = Math.round(Math.random() * 200 - 100);
+    padding = randomInt(-100, 100);
     padding = padding + "px";
-    width = Math.round(Math.random() * 500 - 250);
+    width = randomInt(-250, 250);
     width = width + "px";
-    height = Math.round(Math.random() * 500 - 250);
+    height = randomInt(-250, 250);
     height = height + "px";
     e.style.setProperty("margin", margins);
     e.style.setProperty("padding", padding);
@@ -364,30 +365,30 @@ function scrambleHeaders() {
       //generates a random solid rgb background color
       var c =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         ")";
       e.style.setProperty("background-color", c);
     } else {
       //generates a random gradient
       var c1 =
         "linear-gradient(rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "), ";
       var c2 =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "))";
       var gradient = c1 + c2;
       e.style.removeProperty("background-color");
@@ -396,23 +397,23 @@ function scrambleHeaders() {
     //content color h3
     var c =
       "rgb(" +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       ")";
     e.style.setProperty("color", c);
     //end content color h3
 
     //margins h3
-    margins = Math.round(Math.random() * 200 - 100);
+    margins = randomInt(-100, 100);
     margins = margins + "px";
-    padding = Math.round(Math.random() * 200 - 100);
+    padding = randomInt(-100, 100);
     padding = padding + "px";
-    width = Math.round(Math.random() * 500 - 250);
+    width = randomInt(-250, 250);
     width = width + "px";
-    height = Math.round(Math.random() * 500 - 250);
+    height = randomInt(-250, 250);
     height = height + "px";
     e.style.setProperty("margin", margins);
     e.style.setProperty("padding", padding);
@@ -430,30 +431,30 @@ function scrambleHeaders() {
       //generates a random solid rgb background color
       var c =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         ")";
       e.style.setProperty("background-color", c);
     } else {
       //generates a random gradient
       var c1 =
         "linear-gradient(rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "), ";
       var c2 =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "))";
       var gradient = c1 + c2;
       e.style.removeProperty("background-color");
@@ -462,23 +463,23 @@ function scrambleHeaders() {
     //content color h4
     var c =
       "rgb(" +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       ")";
     e.style.setProperty("color", c);
     //end content color h4
 
     //margins h4
-    margins = Math.round(Math.random() * 200 - 100);
+    margins = randomInt(-100, 100);
     margins = margins + "px";
-    padding = Math.round(Math.random() * 200 - 100);
+    padding = randomInt(-100, 100);
     padding = padding + "px";
-    width = Math.round(Math.random() * 500 - 250);
+    width = randomInt(-250, 250);
     width = width + "px";
-    height = Math.round(Math.random() * 500 - 250);
+    height = randomInt(-250, 250);
     height = height + "px";
     e.style.setProperty("margin", margins);
     e.style.setProperty("padding", padding);
@@ -496,30 +497,30 @@ function scrambleHeaders() {
       //generates a random solid rgb background color
       var c =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         ")";
       e.style.setProperty("background-color", c);
     } else {
       //generates a random gradient
       var c1 =
         "linear-gradient(rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "), ";
       var c2 =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "))";
       var gradient = c1 + c2;
       e.style.removeProperty("background-color");
@@ -528,23 +529,23 @@ function scrambleHeaders() {
     //content color h5
     var c =
       "rgb(" +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       ")";
     e.style.setProperty("color", c);
     //end content color h5
 
     //margins h5
-    margins = Math.round(Math.random() * 200 - 100);
+    margins = randomInt(-100, 100);
     margins = margins + "px";
-    padding = Math.round(Math.random() * 200 - 100);
+    padding = randomInt(-100, 100);
     padding = padding + "px";
-    width = Math.round(Math.random() * 500 - 250);
+    width = randomInt(-250, 250);
     width = width + "px";
-    height = Math.round(Math.random() * 500 - 250);
+    height = randomInt(-250, 250);
     height = height + "px";
     e.style.setProperty("margin", margins);
     e.style.setProperty("padding", padding);
@@ -564,11 +565,11 @@ function scrambleP() {
       //generates a random solid rgb background color
       var c =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         ")";
       e.style.removeProperty("background-image");
       e.style.setProperty("background-color", c);
@@ -576,19 +577,19 @@ function scrambleP() {
       //generates a random gradient
       var c1 =
         "linear-gradient(rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "), ";
       var c2 =
         "rgb(" +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "," +
-        Math.floor(Math.random() * 255) +
+        randomInt(0, 255) +
         "))";
       var gradient = c1 + c2;
       e.style.removeProperty("background-color");
@@ -601,11 +602,11 @@ function scrambleP() {
   for (e of document.getElementsByTagName("p")) {
     var c =
       "rgb(" +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       "," +
-      Math.floor(Math.random() * 255) +
+      randomInt(0, 255) +
       ")";
     e.style.setProperty("color", c);
   }
@@ -613,13 +614,13 @@ function scrambleP() {
 
   //mess up margins
   for (e of document.getElementsByTagName("p")) {
-    margins = Math.round(Math.random() * 200 - 100);
+    margins = randomInt(-100, 100);
     margins = margins + "px";
-    padding = Math.round(Math.random() * 200 - 100);
+    padding = randomInt(-100, 100);
     padding = padding + "px";
-    width = Math.round(Math.random() * 500 - 250);
+    width = randomInt(-250, 250);
     width = width + "px";
-    height = Math.round(Math.random() * 500 - 250);
+    height = randomInt(-250, 250);
     height = height + "px";
     e.style.setProperty("margin", margins);
     e.style.setProperty("padding", padding);
