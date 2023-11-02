@@ -26,6 +26,9 @@
 3. Display scramble
 4. position scramble
 5. saving custom scrambles as new templates
+6. Possibly hiding dev options unless the css is checked 
+    (don't display background color params unless its enabled)
+
 
 #### **Thank You's** + *Beta Testers*
 -----------------
