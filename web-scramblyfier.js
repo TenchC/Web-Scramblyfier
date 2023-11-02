@@ -7,8 +7,85 @@ function randomInt(min, max) {
   if (x == 0) {
     x = 1;
   }
-  console.log("min: " + min + " max: " + max + " randomInt:" + x);
   return x;
+}
+
+//Margin Scramble function
+function scrambleMargins(element, min, max){
+  margins = randomInt(min, max);
+    margins = margins + "px";
+    element.style.setProperty("margin", margins);
+}
+
+//Padding Scramble function
+function scramblePadding(element, min, max){
+  padding = randomInt(min, max);
+  padding = padding + "px";
+  element.style.setProperty("padding", padding);
+}
+
+//Width Scramble function
+function scrambleWidth(element, min, max){
+  width = randomInt(min, max);
+width = width + "px";
+element.style.setProperty("width", width);
+}
+
+//Height Scramble function
+function scrambleHeight(element, min, max){
+  height = randomInt(min, max);
+height = height + "px";
+element.style.setProperty("height", height);
+}
+
+//BG Color Scramble function
+function scrambleBGColor(element, min_r, max_r, min_g, max_g, min_b, max_b){
+  var c =
+  "rgb(" +
+  randomInt(min_r, max_r) +
+  "," +
+  randomInt(min_g, max_g) +
+  "," +
+  randomInt(min_b, max_b) +
+  ")";
+element.style.removeProperty("background-image");
+element.style.setProperty("background-color", c);
+}
+
+//BG Color Gradient Scramble function
+function scrambleBGColorGradient(element, min_r, max_r, min_g, max_g, min_b, max_b){
+  var c1 = 
+  "linear-gradient(rgb(" +
+  randomInt(min_r, max_r) +
+  "," +
+  randomInt(min_g, max_g) +
+  "," +
+  randomInt(min_b, max_b) +
+  "), ";
+var c2 =
+  "rgb(" +
+  randomInt(min_r, max_r) +
+  "," +
+  randomInt(min_g, max_g) +
+  "," +
+  randomInt(min_b, max_b) +
+  "))";
+var gradient = c1 + c2;
+element.style.removeProperty("background-color");
+element.style.setProperty("background-image", gradient);
+}
+
+//Content Color Scramble function
+function scrambleContentColor(element, min_r, max_r, min_g, max_g, min_b, max_b){
+  var c =
+  "rgb(" +
+  randomInt(min_r, max_r) +
+  "," +
+  randomInt(min_g, max_g) +
+  "," +
+  randomInt(min_b, max_b) +
+  ")";
+element.style.setProperty("color", c);
 }
 
 //get data from popup
@@ -34,600 +111,206 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 });
 
 function scrambleAll() {
-  //background color of everything
+  //background color
   for (e of document.getElementsByTagName("*")) {
     //boolean variable for gradient or block
     var boolean = Math.round(Math.random());
     if (boolean > 0.5) {
-      //generates a random solid rgb background color
-      var c =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        ")";
-      e.style.removeProperty("background-image");
-      e.style.setProperty("background-color", c);
+      scrambleBGColor(e, 0, 255, 0, 255, 0, 255);
     } else {
-      //generates a random gradient
-      var c1 =
-        "linear-gradient(rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "), ";
-      var c2 =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "))";
-      var gradient = c1 + c2;
-      e.style.removeProperty("background-color");
-      e.style.setProperty("background-image", gradient);
+   scrambleBGColorGradient(e, 0, 255, 0, 255, 0, 255);
     }
+    //content color
+    scrambleContentColor(e, 0, 255, 0, 255, 0, 255);
   }
-  //end background color of everything
 
-  //color of text
-  for (e of document.getElementsByTagName("*")) {
-    var c =
-      "rgb(" +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      ")";
-    e.style.setProperty("color", c);
-  }
-  //end color text
-
-  //mess up margins
+  //margins, padding, height, width
   for (e of document.getElementsByTagName("p")) {
-    margins = randomInt(-100, 100);
-    margins = margins + "px";
-    padding = randomInt(-100, 100);
-    padding = padding + "px";
-    width = randomInt(-250, 250);
-    width = width + "px";
-    height = randomInt(-250, 250);
-    height = height + "px";
-    e.style.setProperty("margin", margins);
-    e.style.setProperty("padding", padding);
-    e.style.setProperty("width", width);
-    e.style.setProperty("height", height);
+   scrambleMargins(e, -100, 100);
+   scramblePadding(e, -100, 100);
+   scrambleWidth(e, 0, 300);
+  scrambleHeight(e, 0, 300);
   }
   for (e of document.getElementsByTagName("div")) {
-    margins = randomInt(-250, 250);
-    margins = margins + "px";
-    padding = randomInt(-250, 250);
-    padding = padding + "px";
-    width = randomInt(-250, 250);
-    width = width + "px";
-    height = randomInt(-250, 250);
-    height = height + "px";
-    e.style.setProperty("margin", margins);
-    e.style.setProperty("padding", padding);
-    e.style.setProperty("width", width);
-    e.style.setProperty("height", height);
+    scrambleMargins(e, -250, 250);
+    scramblePadding(e, -250, 250);
+    scrambleWidth(e, 0, 300);
+   scrambleHeight(e, 0, 300);
   }
   for (e of document.getElementsByTagName("h1")) {
-    margins = randomInt(-100, 100);
-    margins = margins + "px";
-    padding = randomInt(-100, 100);
-    padding = padding + "px";
-    width = randomInt(-250, 250);
-    width = width + "px";
-    height = randomInt(-250, 250);
-    height = height + "px";
-    e.style.setProperty("margin", margins);
-    e.style.setProperty("padding", padding);
-    e.style.setProperty("width", width);
-    e.style.setProperty("height", height);
+    scrambleMargins(e, -250, 250);
+    scramblePadding(e, -250, 250);
+    scrambleWidth(e, 0, 300);
+   scrambleHeight(e, 0, 300);
   }
   for (e of document.getElementsByTagName("a")) {
-    margins = randomInt(-100, 100);
-    margins = margins + "px";
-    padding = randomInt(-100, 100);
-    padding = padding + "px";
-    width = randomInt(-250, 250);
-    width = width + "px";
-    height = randomInt(-250, 250);
-    height = height + "px";
-    e.style.setProperty("margin", margins);
-    e.style.setProperty("padding", padding);
-    e.style.setProperty("width", width);
-    e.style.setProperty("height", height);
+    scrambleMargins(e, -250, 250);
+    scramblePadding(e, -250, 250);
+    scrambleWidth(e, 0, 300);
+    scrambleHeight(e, 0, 300);
   }
-  //end margins
 }
 
 function scrambleDivs() {
-  //background color
+
   for (e of document.getElementsByTagName("div")) {
+    //background color
     //boolean variable for gradient or block
     var boolean = Math.round(Math.random());
     if (boolean > 0.5) {
-      //generates a random solid rgb background color
-      var c =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        ")";
-      e.style.removeProperty("background-image");
-      e.style.setProperty("background-color", c);
+      scrambleBGColor(e, 0, 255, 0, 255, 0, 255)
     } else {
-      //generates a random gradient
-      var c1 =
-        "linear-gradient(rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "), ";
-      var c2 =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "))";
-      var gradient = c1 + c2;
-      e.style.removeProperty("background-color");
-      e.style.setProperty("background-image", gradient);
+     scrambleBGColorGradient(e, 0, 255, 0, 255, 0, 255)
     }
-  }
-  //end background color
 
-  //color of internal
-  for (e of document.getElementsByTagName("div")) {
-    var c =
-      "rgb(" +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      ")";
-    e.style.setProperty("color", c);
-  }
-  //end color internal
+    //content color
+    scrambleContentColor(e, 0, 255, 0, 255, 0, 255)
 
-  //mess up margins
-  for (e of document.getElementsByTagName("div")) {
-    margins = randomInt(-250, 250);
-    margins = margins + "px";
-    padding = randomInt(-250, 250);
-    padding = padding + "px";
-    width = randomInt(-250, 250);
-    width = width + "px";
-    height = randomInt(-250, 250);
-    height = height + "px";
-    e.style.setProperty("margin", margins);
-    e.style.setProperty("padding", padding);
-    e.style.setProperty("width", width);
-    e.style.setProperty("height", height);
+    //margins, padding, width, height
+   scrambleMargins(e, -250, 250);
+   scramblePadding(e, -250, 250);
+   scrambleWidth(e, 0, 300);
+   scrambleHeight(e, 0, 300);
   }
-  //end margins
 }
 
 function scrambleHeaders() {
   // h1
   for (e of document.getElementsByTagName("h1")) {
+    //Background color
     //boolean variable for gradient or block
     var boolean = Math.round(Math.random());
     if (boolean > 0.5) {
-      //generates a random solid rgb background color
-      var c =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        ")";
-      e.style.removeProperty("background-image");
-      e.style.setProperty("background-color", c);
+scrambleBGColor(e, 0, 255, 0, 255, 0, 255);
     } else {
       //generates a random gradient
-      var c1 =
-        "linear-gradient(rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "), ";
-      var c2 =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "))";
-      var gradient = c1 + c2;
-      e.style.removeProperty("background-color");
-      e.style.setProperty("background-image", gradient);
+    scrambleBGColorGradient(e, 0, 255, 0, 255, 0, 255);
     }
-    //content color
-    var c =
-      "rgb(" +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      ")";
-    e.style.setProperty("color", c);
-    //end content color
 
-    //margins and padding
-    margins = randomInt(-100, 100);
-    margins = margins + "px";
-    padding = randomInt(-100, 100);
-    padding = padding + "px";
-    width = randomInt(-250, 250);
-    width = width + "px";
-    height = randomInt(-250, 250);
-    height = height + "px";
-    e.style.setProperty("margin", margins);
-    e.style.setProperty("padding", padding);
-    e.style.setProperty("width", width);
-    e.style.setProperty("height", height);
-    //end margins and padding
+    //content color
+   scrambleContentColor(e, 0, 255, 0, 255, 0, 255);
+
+    //margins, padding, width, height
+    scrambleMargins(e, -250, 250);
+    scramblePadding(e, -250, 250);
+    scrambleWidth(e, 0, 300);
+   scrambleHeight(e, 0, 300);
   }
   //end h1
 
   // h2
   for (e of document.getElementsByTagName("h2")) {
+      //Background color
     //boolean variable for gradient or block
     var boolean = Math.round(Math.random());
     if (boolean > 0.5) {
-      //generates a random solid rgb background color
-      var c =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        ")";
-      e.style.setProperty("background-color", c);
+scrambleBGColor(e, 0, 255, 0, 255, 0, 255);
     } else {
       //generates a random gradient
-      var c1 =
-        "linear-gradient(rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "), ";
-      var c2 =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "))";
-      var gradient = c1 + c2;
-      e.style.removeProperty("background-color");
-      e.style.setProperty("background-image", gradient);
+    scrambleBGColorGradient(e, 0, 255, 0, 255, 0, 255);
     }
-    //content color h2
-    var c =
-      "rgb(" +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      ")";
-    e.style.setProperty("color", c);
-    //end content color h2
 
-    //margins h2
-    margins = randomInt(-100, 100);
-    margins = margins + "px";
-    padding = randomInt(-100, 100);
-    padding = padding + "px";
-    width = randomInt(-250, 250);
-    width = width + "px";
-    height = randomInt(-250, 250);
-    height = height + "px";
-    e.style.setProperty("margin", margins);
-    e.style.setProperty("padding", padding);
-    e.style.setProperty("width", width);
-    e.style.setProperty("height", height);
-    //end margins h2
+    //content color
+   scrambleContentColor(e, 0, 255, 0, 255, 0, 255);
+
+    //margins, padding, width, height
+    scrambleMargins(e, -250, 250);
+    scramblePadding(e, -250, 250);
+    scrambleWidth(e, 0, 300);
+   scrambleHeight(e, 0, 300);
   }
   //end h2
 
   // h3
   for (e of document.getElementsByTagName("h3")) {
+       //Background color
     //boolean variable for gradient or block
     var boolean = Math.round(Math.random());
     if (boolean > 0.5) {
-      //generates a random solid rgb background color
-      var c =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        ")";
-      e.style.setProperty("background-color", c);
+scrambleBGColor(e, 0, 255, 0, 255, 0, 255);
     } else {
       //generates a random gradient
-      var c1 =
-        "linear-gradient(rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "), ";
-      var c2 =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "))";
-      var gradient = c1 + c2;
-      e.style.removeProperty("background-color");
-      e.style.setProperty("background-image", gradient);
+    scrambleBGColorGradient(e, 0, 255, 0, 255, 0, 255);
     }
-    //content color h3
-    var c =
-      "rgb(" +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      ")";
-    e.style.setProperty("color", c);
-    //end content color h3
 
-    //margins h3
-    margins = randomInt(-100, 100);
-    margins = margins + "px";
-    padding = randomInt(-100, 100);
-    padding = padding + "px";
-    width = randomInt(-250, 250);
-    width = width + "px";
-    height = randomInt(-250, 250);
-    height = height + "px";
-    e.style.setProperty("margin", margins);
-    e.style.setProperty("padding", padding);
-    e.style.setProperty("width", width);
-    e.style.setProperty("height", height);
-    //end margins h3
+    //content color
+   scrambleContentColor(e, 0, 255, 0, 255, 0, 255);
+
+    //margins, padding, width, height
+    scrambleMargins(e, -250, 250);
+    scramblePadding(e, -250, 250);
+    scrambleWidth(e, 0, 300);
+   scrambleHeight(e, 0, 300);
   }
   //end h3
 
   // h4
   for (e of document.getElementsByTagName("h4")) {
+       //Background color
     //boolean variable for gradient or block
     var boolean = Math.round(Math.random());
     if (boolean > 0.5) {
-      //generates a random solid rgb background color
-      var c =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        ")";
-      e.style.setProperty("background-color", c);
+scrambleBGColor(e, 0, 255, 0, 255, 0, 255);
     } else {
       //generates a random gradient
-      var c1 =
-        "linear-gradient(rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "), ";
-      var c2 =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "))";
-      var gradient = c1 + c2;
-      e.style.removeProperty("background-color");
-      e.style.setProperty("background-image", gradient);
+    scrambleBGColorGradient(e, 0, 255, 0, 255, 0, 255);
     }
-    //content color h4
-    var c =
-      "rgb(" +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      ")";
-    e.style.setProperty("color", c);
-    //end content color h4
 
-    //margins h4
-    margins = randomInt(-100, 100);
-    margins = margins + "px";
-    padding = randomInt(-100, 100);
-    padding = padding + "px";
-    width = randomInt(-250, 250);
-    width = width + "px";
-    height = randomInt(-250, 250);
-    height = height + "px";
-    e.style.setProperty("margin", margins);
-    e.style.setProperty("padding", padding);
-    e.style.setProperty("width", width);
-    e.style.setProperty("height", height);
-    //end margins h4
+    //content color
+   scrambleContentColor(e, 0, 255, 0, 255, 0, 255);
+
+    //margins, padding, width, height
+    scrambleMargins(e, -250, 250);
+    scramblePadding(e, -250, 250);
+    scrambleWidth(e, 0, 300);
+   scrambleHeight(e, 0, 300);
   }
   //end h4
 
   // h5
   for (e of document.getElementsByTagName("h5")) {
+      //Background color
     //boolean variable for gradient or block
     var boolean = Math.round(Math.random());
     if (boolean > 0.5) {
-      //generates a random solid rgb background color
-      var c =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        ")";
-      e.style.setProperty("background-color", c);
+scrambleBGColor(e, 0, 255, 0, 255, 0, 255);
     } else {
       //generates a random gradient
-      var c1 =
-        "linear-gradient(rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "), ";
-      var c2 =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "))";
-      var gradient = c1 + c2;
-      e.style.removeProperty("background-color");
-      e.style.setProperty("background-image", gradient);
+    scrambleBGColorGradient(e, 0, 255, 0, 255, 0, 255);
     }
-    //content color h5
-    var c =
-      "rgb(" +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      ")";
-    e.style.setProperty("color", c);
-    //end content color h5
 
-    //margins h5
-    margins = randomInt(-100, 100);
-    margins = margins + "px";
-    padding = randomInt(-100, 100);
-    padding = padding + "px";
-    width = randomInt(-250, 250);
-    width = width + "px";
-    height = randomInt(-250, 250);
-    height = height + "px";
-    e.style.setProperty("margin", margins);
-    e.style.setProperty("padding", padding);
-    e.style.setProperty("width", width);
-    e.style.setProperty("height", height);
-    //end margins h5
+    //content color
+   scrambleContentColor(e, 0, 255, 0, 255, 0, 255);
+
+    //margins, padding, width, height
+    scrambleMargins(e, -250, 250);
+    scramblePadding(e, -250, 250);
+    scrambleWidth(e, 0, 300);
+   scrambleHeight(e, 0, 300);
   }
   //end h5
 }
 
 function scrambleP() {
-  //background color of p tags
-  for (e of document.getElementsByTagName("p")) {
+  for (e of document.getElementsByTagName("P")) {
+    //background color
     //boolean variable for gradient or block
     var boolean = Math.round(Math.random());
     if (boolean > 0.5) {
-      //generates a random solid rgb background color
-      var c =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        ")";
-      e.style.removeProperty("background-image");
-      e.style.setProperty("background-color", c);
+      scrambleBGColor(e, 0, 255, 0, 255, 0, 255)
     } else {
-      //generates a random gradient
-      var c1 =
-        "linear-gradient(rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "), ";
-      var c2 =
-        "rgb(" +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "," +
-        randomInt(0, 255) +
-        "))";
-      var gradient = c1 + c2;
-      e.style.removeProperty("background-color");
-      e.style.setProperty("background-image", gradient);
+     scrambleBGColorGradient(e, 0, 255, 0, 255, 0, 255)
     }
-  }
-  //end background color of p tags
 
-  //color of text
-  for (e of document.getElementsByTagName("p")) {
-    var c =
-      "rgb(" +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      "," +
-      randomInt(0, 255) +
-      ")";
-    e.style.setProperty("color", c);
-  }
-  //end color text
+    //content color
+    scrambleContentColor(e, 0, 255, 0, 255, 0, 255)
 
-  //mess up margins
-  for (e of document.getElementsByTagName("p")) {
-    margins = randomInt(-100, 100);
-    margins = margins + "px";
-    padding = randomInt(-100, 100);
-    padding = padding + "px";
-    width = randomInt(-250, 250);
-    width = width + "px";
-    height = randomInt(-250, 250);
-    height = height + "px";
-    e.style.setProperty("margin", margins);
-    e.style.setProperty("padding", padding);
-    e.style.setProperty("width", width);
-    e.style.setProperty("height", height);
+    //margins, padding, width, height
+   scrambleMargins(e, -250, 250);
+   scramblePadding(e, -250, 250);
+   scrambleWidth(e, 0, 300);
+   scrambleHeight(e, 0, 300);
   }
-  //end margins
 }
 
 function scrambleCustom(message) {
@@ -639,789 +322,294 @@ function scrambleCustom(message) {
     message.scrambled_elements_divs &&
     message.scrambled_elements_p
   ) {
-    console.log("scrambling Everything");
     for (e of document.getElementsByTagName("*")) {
       //if bg color is checked
       if (message.scrambled_css_bg_color) {
         //if bg type is solid
         if (message.bg_type == "solid") {
-          var c =
-            "rgb(" +
-            randomInt(message.bg_r_min, message.bg_r_max) +
-            "," +
-            randomInt(message.bg_g_min, message.bg_g_max) +
-            "," +
-            randomInt(message.bg_b_min, message.bg_b_max) +
-            ")";
-          e.style.removeProperty("background-image");
-          e.style.setProperty("background-color", c);
+          scrambleBGColor(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
         } else if (message.bg_type == "gradient") {
           //if bg type is gradient
-          var c1 =
-            "linear-gradient(rgb(" +
-            randomInt(message.bg_r_min, message.bg_r_max) +
-            "," +
-            randomInt(message.bg_g_min, message.bg_g_max) +
-            "," +
-            randomInt(message.bg_b_min, message.bg_b_max) +
-            ")";
-          var c2 =
-            ",rgb(" +
-            randomInt(message.bg_r_min, message.bg_r_max) +
-            "," +
-            randomInt(message.bg_g_min, message.bg_g_max) +
-            "," +
-            randomInt(message.bg_b_min, message.bg_b_max) +
-            "))";
-          var gradient = c1 + c2;
-          console.log(gradient);
-          e.style.removeProperty("background-color");
-          e.style.setProperty("background-image", gradient);
+          scrambleBGColorGradient(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
         } else if (message.bg_type == "mixed") {
           //if bg type is mixed
           var boolean = Math.round(Math.random());
           if (boolean > 0.5) {
-            //generates a random solid rgb background color
-            var c =
-              "rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              ")";
-            e.style.setProperty("background-color", c);
+            scrambleBGColor(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
           } else {
-            //generates a random gradient
-            var c1 =
-              "linear-gradient(rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              ")";
-            var c2 =
-              ", rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              "))";
-            var gradient = c1 + c2;
-            e.style.removeProperty("background-color");
-            e.style.setProperty("background-image", gradient);
+            scrambleBGColorGradient(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
           }
         }
       }
       //if content color is checked
       if (message.scrambled_css_content_color) {
-        var c =
-          "rgb(" +
-          randomInt(message.content_r_min, message.content_r_max) +
-          "," +
-          randomInt(message.content_g_min, message.content_g_max) +
-          "," +
-          randomInt(message.content_b_min, message.content_b_max) +
-          ")";
-        e.style.setProperty("color", c);
+        scrambleContentColor(e, message.content_r_min_r_min, message.content_r_max, message.content_g_min, message.content_g_max, message.content_b_min, message.content_b_max)
       }
       //if margins is checked
       if (message.scrambled_css_margins) {
-        margins = randomInt(message.margins_min, message.margins_max);
-        margins = margins + "px";
-        e.style.setProperty("margin", margins);
+        scrambleMargins(e, message.margins_min, message.margins_max)
       }
       //if padding is checked
       if (message.scrambled_css_padding) {
-        padding = randomInt(message.padding_min, message.padding_max);
-        padding = padding + "px";
-        e.style.setProperty("padding", padding);
+        scramblePadding(e, message.padding_min, message.padding_max)
       }
       //if width is checked
       if (message.scrambled_css_width) {
-        width = randomInt(message.width_min, message.width_max);
-        width = width + "px";
-        e.style.setProperty("width", width);
+       scrambleWidth(e, message.width_min, message.width_max)
       }
       //if height is checked
       if (message.scrambled_css_height) {
-        height = randomInt(message.height_min, message.height_max);
-        height = height + "px";
-        e.style.setProperty("height", height);
+        scrambleHeight(e, message.height_min, message.height_max)
       }
     }
   } else {
     //if Divs are checked
     if (message.scrambled_elements_divs) {
-      console.log("scrambling Divs");
       for (e of document.getElementsByTagName("div")) {
-        //if bg color is checked
-        if (message.scrambled_css_bg_color) {
-          //if bg type is solid
-          if (message.bg_type == "solid") {
-            var c =
-              "rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              ")";
-            e.style.setProperty("background-color", c);
-          } else if (message.bg_type == "gradient") {
-            //if bg type is gradient
-            var c1 =
-              "linear-gradient(rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              ")";
-            var c2 =
-              ",rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              "))";
-            var gradient = c1 + c2;
-            console.log(gradient);
-            e.style.removeProperty("background-color");
-            e.style.setProperty("background-image", gradient);
-          } else if (message.bg_type == "mixed") {
-            //if bg type is mixed
-            var boolean = Math.round(Math.random());
-            if (boolean > 0.5) {
-              //generates a random solid rgb background color
-              var c =
-                "rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                ")";
-              e.style.setProperty("background-color", c);
-            } else {
-              //generates a random gradient
-              var c1 =
-                "linear-gradient(rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                ")";
-              var c2 =
-                ", rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                "))";
-              var gradient = c1 + c2;
-              e.style.removeProperty("background-color");
-              e.style.setProperty("background-image", gradient);
-            }
+      //if bg color is checked
+      if (message.scrambled_css_bg_color) {
+        //if bg type is solid
+        if (message.bg_type == "solid") {
+          scrambleBGColor(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+        } else if (message.bg_type == "gradient") {
+          //if bg type is gradient
+          scrambleBGColorGradient(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+        } else if (message.bg_type == "mixed") {
+          //if bg type is mixed
+          var boolean = Math.round(Math.random());
+          if (boolean > 0.5) {
+            scrambleBGColor(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+          } else {
+            scrambleBGColorGradient(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
           }
         }
-        //if content color is checked
-        if (message.scrambled_css_content_color) {
-          var c =
-            "rgb(" +
-            randomInt(message.content_r_min, message.content_r_max) +
-            "," +
-            randomInt(message.content_g_min, message.content_g_max) +
-            "," +
-            randomInt(message.content_b_min, message.content_b_max) +
-            ")";
-          e.style.setProperty("color", c);
-        }
-        //if margins is checked
-        if (message.scrambled_css_margins) {
-          margins = randomInt(message.margins_min, message.margins_max);
-          margins = margins + "px";
-          e.style.setProperty("margin", margins);
-        }
-        //if padding is checked
-        if (message.scrambled_css_padding) {
-          padding = randomInt(message.padding_min, message.padding_max);
-          padding = padding + "px";
-          e.style.setProperty("padding", padding);
-        }
-        //if width is checked
-        if (message.scrambled_css_width) {
-          width = randomInt(message.width_min, message.width_max);
-          width = width + "px";
-          e.style.setProperty("width", width);
-        }
-        //if height is checked
-        if (message.scrambled_css_height) {
-          height = randomInt(message.height_min, message.height_max);
-          height = height + "px";
-          e.style.setProperty("height", height);
-        }
+      }
+      //if content color is checked
+      if (message.scrambled_css_content_color) {
+        scrambleContentColor(e, message.content_r_min_r_min, message.content_r_max, message.content_g_min, message.content_g_max, message.content_b_min, message.content_b_max)
+      }
+      //if margins is checked
+      if (message.scrambled_css_margins) {
+        scrambleMargins(e, message.margins_min, message.margins_max)
+      }
+      //if padding is checked
+      if (message.scrambled_css_padding) {
+        scramblePadding(e, message.padding_min, message.padding_max)
+      }
+      //if width is checked
+      if (message.scrambled_css_width) {
+       scrambleWidth(e, message.width_min, message.width_max)
+      }
+      //if height is checked
+      if (message.scrambled_css_height) {
+        scrambleHeight(e, message.height_min, message.height_max)
+      }
       }
     }
     //if P tags are checked
     if (message.scrambled_elements_p) {
       for (e of document.getElementsByTagName("p")) {
-        //if bg color is checked
-        if (message.scrambled_css_bg_color) {
-          //if bg type is solid
-          if (message.bg_type == "solid") {
-            var c =
-              "rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              ")";
-            e.style.setProperty("background-color", c);
-          } else if (message.bg_type == "gradient") {
-            //if bg type is gradient
-            var c1 =
-              "linear-gradient(rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              ")";
-            var c2 =
-              "rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              "))";
-            var gradient = c1 + c2;
-            e.style.removeProperty("background-color");
-            e.style.setProperty("background-image", gradient);
-          } else if (message.bg_type == "mixed") {
-            //if bg type is mixed
-            var boolean = Math.round(Math.random());
-            if (boolean > 0.5) {
-              //generates a random solid rgb background color
-              var c =
-                "rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                ")";
-              e.style.setProperty("background-color", c);
-            } else {
-              //generates a random gradient
-              var c1 =
-                "linear-gradient(rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                ")";
-              var c2 =
-                "rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                "))";
-              var gradient = c1 + c2;
-              e.style.removeProperty("background-color");
-              e.style.setProperty("background-image", gradient);
-            }
+      //if bg color is checked
+      if (message.scrambled_css_bg_color) {
+        //if bg type is solid
+        if (message.bg_type == "solid") {
+          scrambleBGColor(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+        } else if (message.bg_type == "gradient") {
+          //if bg type is gradient
+          scrambleBGColorGradient(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+        } else if (message.bg_type == "mixed") {
+          //if bg type is mixed
+          var boolean = Math.round(Math.random());
+          if (boolean > 0.5) {
+            scrambleBGColor(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+          } else {
+            scrambleBGColorGradient(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
           }
         }
-        //if content color is checked
-        if (message.scrambled_css_content_color) {
-          var c =
-            "rgb(" +
-            randomInt(message.content_r_min, message.content_r_max) +
-            "," +
-            randomInt(message.content_g_min, message.content_g_max) +
-            "," +
-            randomInt(message.content_b_min, message.content_b_max) +
-            ")";
-          e.style.setProperty("color", c);
-        }
-        //if margins is checked
-        if (message.scrambled_css_margins) {
-          margins = randomInt(message.margins_min, message.margins_max);
-          margins = margins + "px";
-          e.style.setProperty("margin", margins);
-        }
-        //if padding is checked
-        if (message.scrambled_css_padding) {
-          padding = randomInt(message.padding_min, message.padding_max);
-          padding = padding + "px";
-          e.style.setProperty("padding", padding);
-        }
-        //if width is checked
-        if (message.scrambled_css_width) {
-          width = randomInt(message.width_min, message.width_max);
-          width = width + "px";
-          e.style.setProperty("width", width);
-        }
-        //if height is checked
-        if (message.scrambled_css_height) {
-          height = randomInt(message.height_min, message.height_max);
-          height = height + "px";
-          e.style.setProperty("height", height);
-        }
+      }
+      //if content color is checked
+      if (message.scrambled_css_content_color) {
+        scrambleContentColor(e, message.content_r_min_r_min, message.content_r_max, message.content_g_min, message.content_g_max, message.content_b_min, message.content_b_max)
+      }
+      //if margins is checked
+      if (message.scrambled_css_margins) {
+        scrambleMargins(e, message.margins_min, message.margins_max)
+      }
+      //if padding is checked
+      if (message.scrambled_css_padding) {
+        scramblePadding(e, message.padding_min, message.padding_max)
+      }
+      //if width is checked
+      if (message.scrambled_css_width) {
+       scrambleWidth(e, message.width_min, message.width_max)
+      }
+      //if height is checked
+      if (message.scrambled_css_height) {
+        scrambleHeight(e, message.height_min, message.height_max)
+      }
       }
     }
     //if headers are checked
     if (message.scrambled_elements_headers) {
       for (e of document.getElementsByTagName("h1")) {
-        //if bg color is checked
-        if (message.scrambled_css_bg_color) {
-          //if bg type is solid
-          if (message.bg_type == "solid") {
-            var c =
-              "rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              ")";
-            e.style.setProperty("background-color", c);
-          } else if (message.bg_type == "gradient") {
-            //if bg type is gradient
-            var c1 =
-              "linear-gradient(rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              ")";
-            var c2 =
-              "rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              "))";
-            var gradient = c1 + c2;
-            e.style.removeProperty("background-color");
-            e.style.setProperty("background-image", gradient);
-          } else if (message.bg_type == "mixed") {
-            //if bg type is mixed
-            var boolean = Math.round(Math.random());
-            if (boolean > 0.5) {
-              //generates a random solid rgb background color
-              var c =
-                "rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                ")";
-              e.style.setProperty("background-color", c);
-            } else {
-              //generates a random gradient
-              var c1 =
-                "linear-gradient(rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                ")";
-              var c2 =
-                "rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                "))";
-              var gradient = c1 + c2;
-              e.style.removeProperty("background-color");
-              e.style.setProperty("background-image", gradient);
-            }
+      //if bg color is checked
+      if (message.scrambled_css_bg_color) {
+        //if bg type is solid
+        if (message.bg_type == "solid") {
+          scrambleBGColor(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+        } else if (message.bg_type == "gradient") {
+          //if bg type is gradient
+          scrambleBGColorGradient(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+        } else if (message.bg_type == "mixed") {
+          //if bg type is mixed
+          var boolean = Math.round(Math.random());
+          if (boolean > 0.5) {
+            scrambleBGColor(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+          } else {
+            scrambleBGColorGradient(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
           }
         }
-        //if content color is checked
-        if (message.scrambled_css_content_color) {
-          var c =
-            "rgb(" +
-            randomInt(message.content_r_min, message.content_r_max) +
-            "," +
-            randomInt(message.content_g_min, message.content_g_max) +
-            "," +
-            randomInt(message.content_b_min, message.content_b_max) +
-            ")";
-          e.style.setProperty("color", c);
-        }
-        //if margins is checked
-        if (message.scrambled_css_margins) {
-          margins = randomInt(message.margins_min, message.margins_max);
-          margins = margins + "px";
-          e.style.setProperty("margin", margins);
-        }
-        //if padding is checked
-        if (message.scrambled_css_padding) {
-          padding = randomInt(message.padding_min, message.padding_max);
-          padding = padding + "px";
-          e.style.setProperty("padding", padding);
-        }
-        //if width is checked
-        if (message.scrambled_css_width) {
-          width = randomInt(message.width_min, message.width_max);
-          width = width + "px";
-          e.style.setProperty("width", width);
-        }
-        //if height is checked
-        if (message.scrambled_css_height) {
-          height = randomInt(message.height_min, message.height_max);
-          height = height + "px";
-          e.style.setProperty("height", height);
-        }
+      }
+      //if content color is checked
+      if (message.scrambled_css_content_color) {
+        scrambleContentColor(e, message.content_r_min_r_min, message.content_r_max, message.content_g_min, message.content_g_max, message.content_b_min, message.content_b_max)
+      }
+      //if margins is checked
+      if (message.scrambled_css_margins) {
+        scrambleMargins(e, message.margins_min, message.margins_max)
+      }
+      //if padding is checked
+      if (message.scrambled_css_padding) {
+        scramblePadding(e, message.padding_min, message.padding_max)
+      }
+      //if width is checked
+      if (message.scrambled_css_width) {
+       scrambleWidth(e, message.width_min, message.width_max)
+      }
+      //if height is checked
+      if (message.scrambled_css_height) {
+        scrambleHeight(e, message.height_min, message.height_max)
+      }
       }
       for (e of document.getElementsByTagName("h2")) {
-        //if bg color is checked
-        if (message.scrambled_css_bg_color) {
-          //if bg type is solid
-          if (message.bg_type == "solid") {
-            var c =
-              "rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              ")";
-            e.style.setProperty("background-color", c);
-          } else if (message.bg_type == "gradient") {
-            //if bg type is gradient
-            var c1 =
-              "linear-gradient(rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              ")";
-            var c2 =
-              "rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              "))";
-            var gradient = c1 + c2;
-            e.style.removeProperty("background-color");
-            e.style.setProperty("background-image", gradient);
-          } else if (message.bg_type == "mixed") {
-            //if bg type is mixed
-            var boolean = Math.round(Math.random());
-            if (boolean > 0.5) {
-              //generates a random solid rgb background color
-              var c =
-                "rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                ")";
-              e.style.setProperty("background-color", c);
-            } else {
-              //generates a random gradient
-              var c1 =
-                "linear-gradient(rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                ")";
-              var c2 =
-                "rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                "))";
-              var gradient = c1 + c2;
-              e.style.removeProperty("background-color");
-              e.style.setProperty("background-image", gradient);
-            }
+      //if bg color is checked
+      if (message.scrambled_css_bg_color) {
+        //if bg type is solid
+        if (message.bg_type == "solid") {
+          scrambleBGColor(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+        } else if (message.bg_type == "gradient") {
+          //if bg type is gradient
+          scrambleBGColorGradient(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+        } else if (message.bg_type == "mixed") {
+          //if bg type is mixed
+          var boolean = Math.round(Math.random());
+          if (boolean > 0.5) {
+            scrambleBGColor(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+          } else {
+            scrambleBGColorGradient(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
           }
         }
-        //if content color is checked
-        if (message.scrambled_css_content_color) {
-          var c =
-            "rgb(" +
-            randomInt(message.content_r_min, message.content_r_max) +
-            "," +
-            randomInt(message.content_g_min, message.content_g_max) +
-            "," +
-            randomInt(message.content_b_min, message.content_b_max) +
-            ")";
-          e.style.setProperty("color", c);
-        }
-        //if margins is checked
-        if (message.scrambled_css_margins) {
-          margins = randomInt(message.margins_min, message.margins_max);
-          margins = margins + "px";
-          e.style.setProperty("margin", margins);
-        }
-        //if padding is checked
-        if (message.scrambled_css_padding) {
-          padding = randomInt(message.padding_min, message.padding_max);
-          padding = padding + "px";
-          e.style.setProperty("padding", padding);
-        }
-        //if width is checked
-        if (message.scrambled_css_width) {
-          width = randomInt(message.width_min, message.width_max);
-          width = width + "px";
-          e.style.setProperty("width", width);
-        }
-        //if height is checked
-        if (message.scrambled_css_height) {
-          height = randomInt(message.height_min, message.height_max);
-          height = height + "px";
-          e.style.setProperty("height", height);
-        }
+      }
+      //if content color is checked
+      if (message.scrambled_css_content_color) {
+        scrambleContentColor(e, message.content_r_min_r_min, message.content_r_max, message.content_g_min, message.content_g_max, message.content_b_min, message.content_b_max)
+      }
+      //if margins is checked
+      if (message.scrambled_css_margins) {
+        scrambleMargins(e, message.margins_min, message.margins_max)
+      }
+      //if padding is checked
+      if (message.scrambled_css_padding) {
+        scramblePadding(e, message.padding_min, message.padding_max)
+      }
+      //if width is checked
+      if (message.scrambled_css_width) {
+       scrambleWidth(e, message.width_min, message.width_max)
+      }
+      //if height is checked
+      if (message.scrambled_css_height) {
+        scrambleHeight(e, message.height_min, message.height_max)
+      }
       }
       for (e of document.getElementsByTagName("h3")) {
-        //if bg color is checked
-        if (message.scrambled_css_bg_color) {
-          //if bg type is solid
-          if (message.bg_type == "solid") {
-            var c =
-              "rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              ")";
-            e.style.setProperty("background-color", c);
-          } else if (message.bg_type == "gradient") {
-            //if bg type is gradient
-            var c1 =
-              "linear-gradient(rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              ")";
-            var c2 =
-              "rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              "))";
-            var gradient = c1 + c2;
-            e.style.removeProperty("background-color");
-            e.style.setProperty("background-image", gradient);
-          } else if (message.bg_type == "mixed") {
-            //if bg type is mixed
-            var boolean = Math.round(Math.random());
-            if (boolean > 0.5) {
-              //generates a random solid rgb background color
-              var c =
-                "rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                ")";
-              e.style.setProperty("background-color", c);
-            } else {
-              //generates a random gradient
-              var c1 =
-                "linear-gradient(rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                ")";
-              var c2 =
-                "rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                "))";
-              var gradient = c1 + c2;
-              e.style.removeProperty("background-color");
-              e.style.setProperty("background-image", gradient);
-            }
+      //if bg color is checked
+      if (message.scrambled_css_bg_color) {
+        //if bg type is solid
+        if (message.bg_type == "solid") {
+          scrambleBGColor(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+        } else if (message.bg_type == "gradient") {
+          //if bg type is gradient
+          scrambleBGColorGradient(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+        } else if (message.bg_type == "mixed") {
+          //if bg type is mixed
+          var boolean = Math.round(Math.random());
+          if (boolean > 0.5) {
+            scrambleBGColor(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+          } else {
+            scrambleBGColorGradient(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
           }
-        }
-        //if content color is checked
-        if (message.scrambled_css_content_color) {
-          var c =
-            "rgb(" +
-            randomInt(message.content_r_min, message.content_r_max) +
-            "," +
-            randomInt(message.content_g_min, message.content_g_max) +
-            "," +
-            randomInt(message.content_b_min, message.content_b_max) +
-            ")";
-          e.style.setProperty("color", c);
-        }
-        //if margins is checked
-        if (message.scrambled_css_margins) {
-          margins = randomInt(message.margins_min, message.margins_max);
-          margins = margins + "px";
-          e.style.setProperty("margin", margins);
-        }
-        //if padding is checked
-        if (message.scrambled_css_padding) {
-          padding = randomInt(message.padding_min, message.padding_max);
-          padding = padding + "px";
-          e.style.setProperty("padding", padding);
-        }
-        //if width is checked
-        if (message.scrambled_css_width) {
-          width = randomInt(message.width_min, message.width_max);
-          width = width + "px";
-          e.style.setProperty("width", width);
-        }
-        //if height is checked
-        if (message.scrambled_css_height) {
-          height = randomInt(message.height_min, message.height_max);
-          height = height + "px";
-          e.style.setProperty("height", height);
         }
       }
+      //if content color is checked
+      if (message.scrambled_css_content_color) {
+        scrambleContentColor(e, message.content_r_min_r_min, message.content_r_max, message.content_g_min, message.content_g_max, message.content_b_min, message.content_b_max)
+      }
+      //if margins is checked
+      if (message.scrambled_css_margins) {
+        scrambleMargins(e, message.margins_min, message.margins_max)
+      }
+      //if padding is checked
+      if (message.scrambled_css_padding) {
+        scramblePadding(e, message.padding_min, message.padding_max)
+      }
+      //if width is checked
+      if (message.scrambled_css_width) {
+       scrambleWidth(e, message.width_min, message.width_max)
+      }
+      //if height is checked
+      if (message.scrambled_css_height) {
+        scrambleHeight(e, message.height_min, message.height_max)
+      }
+      }
       for (e of document.getElementsByTagName("h4")) {
-        //if bg color is checked
-        if (message.scrambled_css_bg_color) {
-          //if bg type is solid
-          if (message.bg_type == "solid") {
-            var c =
-              "rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              ")";
-            e.style.setProperty("background-color", c);
-          } else if (message.bg_type == "gradient") {
-            //if bg type is gradient
-            var c1 =
-              "linear-gradient(rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              ")";
-            var c2 =
-              "rgb(" +
-              randomInt(message.bg_r_min, message.bg_r_max) +
-              "," +
-              randomInt(message.bg_g_min, message.bg_g_max) +
-              "," +
-              randomInt(message.bg_b_min, message.bg_b_max) +
-              "))";
-            var gradient = c1 + c2;
-            e.style.removeProperty("background-color");
-            e.style.setProperty("background-image", gradient);
-          } else if (message.bg_type == "mixed") {
-            //if bg type is mixed
-            var boolean = Math.round(Math.random());
-            if (boolean > 0.5) {
-              //generates a random solid rgb background color
-              var c =
-                "rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                ")";
-              e.style.setProperty("background-color", c);
-            } else {
-              //generates a random gradient
-              var c1 =
-                "linear-gradient(rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                ")";
-              var c2 =
-                "rgb(" +
-                randomInt(message.bg_r_min, message.bg_r_max) +
-                "," +
-                randomInt(message.bg_g_min, message.bg_g_max) +
-                "," +
-                randomInt(message.bg_b_min, message.bg_b_max) +
-                "))";
-              var gradient = c1 + c2;
-              e.style.removeProperty("background-color");
-              e.style.setProperty("background-image", gradient);
-            }
+      //if bg color is checked
+      if (message.scrambled_css_bg_color) {
+        //if bg type is solid
+        if (message.bg_type == "solid") {
+          scrambleBGColor(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+        } else if (message.bg_type == "gradient") {
+          //if bg type is gradient
+          scrambleBGColorGradient(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+        } else if (message.bg_type == "mixed") {
+          //if bg type is mixed
+          var boolean = Math.round(Math.random());
+          if (boolean > 0.5) {
+            scrambleBGColor(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
+          } else {
+            scrambleBGColorGradient(e, message.bg_r_min, message.bg_r_max, message.bg_g_min, message.bg_g_max, message.bg_b_min, message.bg_b_max)
           }
         }
-        //if content color is checked
-        if (message.scrambled_css_content_color) {
-          var c =
-            "rgb(" +
-            randomInt(message.content_r_min, message.content_r_max) +
-            "," +
-            randomInt(message.content_g_min, message.content_g_max) +
-            "," +
-            randomInt(message.content_b_min, message.content_b_max) +
-            ")";
-          e.style.setProperty("color", c);
-        }
-        //if margins is checked
-        if (message.scrambled_css_margins) {
-          margins = randomInt(message.margins_min, message.margins_max);
-          margins = margins + "px";
-          e.style.setProperty("margin", margins);
-        }
-        //if padding is checked
-        if (message.scrambled_css_padding) {
-          padding = randomInt(message.padding_min, message.padding_max);
-          padding = padding + "px";
-          e.style.setProperty("padding", padding);
-        }
-        //if width is checked
-        if (message.scrambled_css_width) {
-          width = randomInt(message.width_min, message.width_max);
-          width = width + "px";
-          e.style.setProperty("width", width);
-        }
-        //if height is checked
-        if (message.scrambled_css_height) {
-          height = randomInt(message.height_min, message.height_max);
-          height = height + "px";
-          e.style.setProperty("height", height);
-        }
+      }
+      //if content color is checked
+      if (message.scrambled_css_content_color) {
+        scrambleContentColor(e, message.content_r_min_r_min, message.content_r_max, message.content_g_min, message.content_g_max, message.content_b_min, message.content_b_max)
+      }
+      //if margins is checked
+      if (message.scrambled_css_margins) {
+        scrambleMargins(e, message.margins_min, message.margins_max)
+      }
+      //if padding is checked
+      if (message.scrambled_css_padding) {
+        scramblePadding(e, message.padding_min, message.padding_max)
+      }
+      //if width is checked
+      if (message.scrambled_css_width) {
+       scrambleWidth(e, message.width_min, message.width_max)
+      }
+      //if height is checked
+      if (message.scrambled_css_height) {
+        scrambleHeight(e, message.height_min, message.height_max)
+      }
       }
     }
   }
