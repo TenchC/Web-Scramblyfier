@@ -22,18 +22,12 @@
 
 ### To Do:
 1. Beta Test
-2. Add Reset button
-3. Add flex-box options
-4. functions for each type of scramble
-
-        margins(element, min, max){
-            margins = randomInt(min, max);
-            element.style.setProperty("margin", margins);
-        }
-
-etc
+2. Font size scramble
+3. Display scramble
+4. position scramble
+5. saving custom scrambles as new templates
 
 #### **Thank You's** + *Beta Testers*
 -----------------
-**Rory Solomon, Lai Yi Ohlsen, Gabriella Acquafredda**, and *Shayla Lee*
+**Rory Solomon, Lai Yi Ohlsen, Gabriella Acquafredda**, *Leah Loeser,* and *Shayla Lee*
 

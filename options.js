@@ -1,62 +1,4 @@
-//async function to send what to scramble to embedded javascript
-async function sendMessageToActiveTab(sent_message) {
-  const [tab] = await chrome.tabs.query({
-    active: true,
-    lastFocusedWindow: true,
-  });
-  if(chrome.runtime.lastError) {
-    setTimeout(ping, 1000);
-  } else {
-    const response = await chrome.tabs.sendMessage(tab.id, {
-      //send the message
-      greeting: sent_message,
-    })
-  }
-  };
-
-//On button presses
-let full_scramble_button = document.getElementById("full_scramble_button");
-full_scramble_button.addEventListener("click", async () => {
-  const data = await sendMessageToActiveTab("scramble_all");
-});
-
-let div_scramble_button = document.getElementById("div_scramble_button");
-div_scramble_button.addEventListener("click", async () => {
-  const data = await sendMessageToActiveTab("scramble_div");
-});
-
-let header_scramble_button = document.getElementById("header_scramble_button");
-header_scramble_button.addEventListener("click", async () => {
-  const data = await sendMessageToActiveTab("scramble_header");
-});
-
-let p_scramble_button = document.getElementById("p_scramble_button");
-p_scramble_button.addEventListener("click", async () => {
-  const data = await sendMessageToActiveTab("scramble_p");
-});
-
-let refresh_button = document.getElementById("refresh_button");
-refresh_button.addEventListener("click", async () => {
-  const data = await sendMessageToActiveTab("refresh_page");
-});
-
-//display dev tools
-let display = document.getElementById("dev_tools");
-display.style.display = "none";
-
-let dev = document.getElementById("dev_button").addEventListener("click", () => {
-  if (display.style.display == "flex") {
-    display.style.removeProperty("display");
-    display.style.setProperty("display", "none");
-  } else if (display.style.display == "none") {
-    display.style.removeProperty("display");
-    display.style.setProperty("display", "flex");
-  }
-});
-//end display dev tools
-
 //class for custom scrambly data
-
 class custom_scramble {
   constructor(
     scrambled_elements_divs,
@@ -141,6 +83,63 @@ class custom_scramble {
     }
   }
 }
+
+//async function to send what to scramble to embedded javascript
+async function sendMessageToActiveTab(sent_message) {
+  const [tab] = await chrome.tabs.query({
+    active: true,
+    lastFocusedWindow: true,
+  });
+  if(chrome.runtime.lastError) {
+    setTimeout(ping, 1000);
+  } else {
+    const response = await chrome.tabs.sendMessage(tab.id, {
+      //send the message
+      greeting: sent_message,
+    })
+  }
+  };
+
+//On button presses
+let full_scramble_button = document.getElementById("full_scramble_button");
+full_scramble_button.addEventListener("click", async () => {
+  const data = await sendMessageToActiveTab("scramble_all");
+});
+
+let div_scramble_button = document.getElementById("div_scramble_button");
+div_scramble_button.addEventListener("click", async () => {
+  const data = await sendMessageToActiveTab("scramble_div");
+});
+
+let header_scramble_button = document.getElementById("header_scramble_button");
+header_scramble_button.addEventListener("click", async () => {
+  const data = await sendMessageToActiveTab("scramble_header");
+});
+
+let p_scramble_button = document.getElementById("p_scramble_button");
+p_scramble_button.addEventListener("click", async () => {
+  const data = await sendMessageToActiveTab("scramble_p");
+});
+
+let refresh_button = document.getElementById("refresh_button");
+refresh_button.addEventListener("click", async () => {
+  const data = await sendMessageToActiveTab("refresh_page");
+});
+
+//display dev tools
+let display = document.getElementById("dev_tools");
+display.style.display = "none";
+
+let dev = document.getElementById("dev_button").addEventListener("click", () => {
+  if (display.style.display == "flex") {
+    display.style.removeProperty("display");
+    display.style.setProperty("display", "none");
+  } else if (display.style.display == "none") {
+    display.style.removeProperty("display");
+    display.style.setProperty("display", "flex");
+  }
+});
+//end display dev tools
 
 //Dev tools
 let custom_scramble_button = document.getElementById("custom_scramble_button");
