@@ -35,11 +35,16 @@ p_scramble_button.addEventListener("click", async () => {
   const data = await sendMessageToActiveTab("scramble_p");
 });
 
+let refresh_button = document.getElementById("refresh_button");
+refresh_button.addEventListener("click", async () => {
+  const data = await sendMessageToActiveTab("refresh_page");
+});
+
 //display dev tools
 let display = document.getElementById("dev_tools");
 display.style.display = "none";
 
-let dev = document.getElementById("dev").addEventListener("click", () => {
+let dev = document.getElementById("dev_button").addEventListener("click", () => {
   if (display.style.display == "flex") {
     display.style.removeProperty("display");
     display.style.setProperty("display", "none");

@@ -102,6 +102,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   } else if (request.greeting === "scramble_p") {
     console.log("scramble P tags!");
     scrambleP();
+  } else if (request.greeting === "refresh_page") {
+    location.reload();
+    return false;
   } else {
     scrambleCustom(request.greeting);
     console.log("Custom scramble!");
@@ -614,3 +617,4 @@ function scrambleCustom(message) {
     }
   }
 }
+
