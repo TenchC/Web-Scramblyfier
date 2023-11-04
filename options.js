@@ -88,6 +88,26 @@ class custom_scramble {
       this.scrambled_css_height = true;
     }
   }
+  check_all(){
+    if(
+      !document.getElementById("custom_elements_divs").checked &&
+      !document.getElementById("custom_elements_p").checked &&
+      !document.getElementById("custom_elements_headers").checked &&
+      !document.getElementById("custom_css_bg_color").checked &&
+      !document.getElementById("custom_css_content_color").checked &&
+      !document.getElementById("custom_css_margins").checked &&
+      !document.getElementById("custom_css_padding").checked &&
+      !document.getElementById("custom_css_width").checked &&
+      !document.getElementById("custom_css_height").checked &&
+      !document.getElementById("custom_css_font_size").checked
+    ){
+    const status = document.getElementById("error");
+      status.style.setProperty("display", "block");
+           setTimeout(() => {
+             status.style.setProperty("display", "none");
+           }, 5000);
+          }
+  }
 }
 
 //async function to send what to scramble to embedded javascript
@@ -189,6 +209,7 @@ custom_scramble_button.addEventListener("click", async () => {
   )
   custom_message.check_elements();
   custom_message.check_css();
+  custom_message.check_all();
   console.log(custom_message)
   const data = await sendMessageToActiveTab(custom_message);
 });
