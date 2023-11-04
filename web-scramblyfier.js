@@ -88,6 +88,13 @@ function scrambleContentColor(element, min_r, max_r, min_g, max_g, min_b, max_b)
 element.style.setProperty("color", c);
 }
 
+//Font Size Scramble function
+function scrambleFontSize(element, min, max){
+  let fontSize = randomInt(min, max);
+  fontSize = fontSize + "px";
+  element.style.setProperty("font-size", fontSize);
+}
+
 //get data from popup
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.greeting === "scramble_all") {
@@ -125,33 +132,16 @@ function scrambleAll() {
     }
     //content color
     scrambleContentColor(e, 0, 255, 0, 255, 0, 255);
-  }
+
 
   //margins, padding, height, width
-  for (e of document.getElementsByTagName("p")) {
-   scrambleMargins(e, -100, 100);
-   scramblePadding(e, -100, 100);
-   scrambleWidth(e, 0, 300);
-  scrambleHeight(e, 0, 300);
-  }
-  for (e of document.getElementsByTagName("div")) {
     scrambleMargins(e, -250, 250);
     scramblePadding(e, -250, 250);
     scrambleWidth(e, 0, 300);
    scrambleHeight(e, 0, 300);
+   scrambleFontSize(e, 10, 60)
   }
-  for (e of document.getElementsByTagName("h1")) {
-    scrambleMargins(e, -250, 250);
-    scramblePadding(e, -250, 250);
-    scrambleWidth(e, 0, 300);
-   scrambleHeight(e, 0, 300);
-  }
-  for (e of document.getElementsByTagName("a")) {
-    scrambleMargins(e, -250, 250);
-    scramblePadding(e, -250, 250);
-    scrambleWidth(e, 0, 300);
-    scrambleHeight(e, 0, 300);
-  }
+
 }
 
 function scrambleDivs() {
@@ -174,6 +164,7 @@ function scrambleDivs() {
    scramblePadding(e, -250, 250);
    scrambleWidth(e, 0, 300);
    scrambleHeight(e, 0, 300);
+   scrambleFontSize(e, 10, 60)
   }
 }
 
@@ -198,6 +189,7 @@ scrambleBGColor(e, 0, 255, 0, 255, 0, 255);
     scramblePadding(e, -250, 250);
     scrambleWidth(e, 0, 300);
    scrambleHeight(e, 0, 300);
+   scrambleFontSize(e, 10, 60)
   }
   //end h1
 
@@ -221,6 +213,7 @@ scrambleBGColor(e, 0, 255, 0, 255, 0, 255);
     scramblePadding(e, -250, 250);
     scrambleWidth(e, 0, 300);
    scrambleHeight(e, 0, 300);
+   scrambleFontSize(e, 10, 60)
   }
   //end h2
 
@@ -244,6 +237,7 @@ scrambleBGColor(e, 0, 255, 0, 255, 0, 255);
     scramblePadding(e, -250, 250);
     scrambleWidth(e, 0, 300);
    scrambleHeight(e, 0, 300);
+   scrambleFontSize(e, 10, 60)
   }
   //end h3
 
@@ -267,6 +261,7 @@ scrambleBGColor(e, 0, 255, 0, 255, 0, 255);
     scramblePadding(e, -250, 250);
     scrambleWidth(e, 0, 300);
    scrambleHeight(e, 0, 300);
+   scrambleFontSize(e, 10, 60)
   }
   //end h4
 
@@ -290,6 +285,7 @@ scrambleBGColor(e, 0, 255, 0, 255, 0, 255);
     scramblePadding(e, -250, 250);
     scrambleWidth(e, 0, 300);
    scrambleHeight(e, 0, 300);
+   scrambleFontSize(e, 10, 60)
   }
   //end h5
 }
@@ -313,6 +309,7 @@ function scrambleP() {
    scramblePadding(e, -250, 250);
    scrambleWidth(e, 0, 300);
    scrambleHeight(e, 0, 300);
+   scrambleFontSize(e, 10, 60)
   }
 }
 
@@ -364,6 +361,9 @@ function scrambleCustom(message) {
       if (message.scrambled_css_height) {
         scrambleHeight(e, message.height_min, message.height_max)
       }
+      if (message.scrambled_css_font_size) {
+        scrambleFontSize(e, message.font_size_min, message.font_size_max)
+      }
     }
   } else {
     //if Divs are checked
@@ -406,6 +406,9 @@ function scrambleCustom(message) {
       //if height is checked
       if (message.scrambled_css_height) {
         scrambleHeight(e, message.height_min, message.height_max)
+      }
+      if (message.scrambled_css_font_size) {
+        scrambleFontSize(e, message.font_size_min, message.font_size_max)
       }
       }
     }
@@ -450,6 +453,9 @@ function scrambleCustom(message) {
       if (message.scrambled_css_height) {
         scrambleHeight(e, message.height_min, message.height_max)
       }
+      if (message.scrambled_css_font_size) {
+        scrambleFontSize(e, message.font_size_min, message.font_size_max)
+      }
       }
     }
     //if headers are checked
@@ -493,6 +499,9 @@ function scrambleCustom(message) {
       if (message.scrambled_css_height) {
         scrambleHeight(e, message.height_min, message.height_max)
       }
+      if (message.scrambled_css_font_size) {
+        scrambleFontSize(e, message.font_size_min, message.font_size_max)
+      }
       }
       for (e of document.getElementsByTagName("h2")) {
       //if bg color is checked
@@ -532,6 +541,9 @@ function scrambleCustom(message) {
       //if height is checked
       if (message.scrambled_css_height) {
         scrambleHeight(e, message.height_min, message.height_max)
+      }
+      if (message.scrambled_css_font_size) {
+        scrambleFontSize(e, message.font_size_min, message.font_size_max)
       }
       }
       for (e of document.getElementsByTagName("h3")) {
@@ -573,6 +585,9 @@ function scrambleCustom(message) {
       if (message.scrambled_css_height) {
         scrambleHeight(e, message.height_min, message.height_max)
       }
+      if (message.scrambled_css_font_size) {
+        scrambleFontSize(e, message.font_size_min, message.font_size_max)
+      }
       }
       for (e of document.getElementsByTagName("h4")) {
       //if bg color is checked
@@ -612,6 +627,9 @@ function scrambleCustom(message) {
       //if height is checked
       if (message.scrambled_css_height) {
         scrambleHeight(e, message.height_min, message.height_max)
+      }
+      if (message.scrambled_css_font_size) {
+        scrambleFontSize(e, message.font_size_min, message.font_size_max)
       }
       }
     }

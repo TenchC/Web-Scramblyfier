@@ -10,6 +10,7 @@ class custom_scramble {
     scrambled_css_padding,
     scrambled_css_width,
     scrambled_css_height,
+    scrambled_css_font_size,
     bg_type,
     bg_r_min,
     bg_r_max,
@@ -30,7 +31,9 @@ class custom_scramble {
     width_min,
     width_max,
     height_min,
-    height_max
+    height_max,
+    font_size_min,
+    font_size_max
   ) {
     this.scrambled_elements_divs = scrambled_elements_divs;
     this.scrambled_elements_p = scrambled_elements_p;
@@ -41,6 +44,7 @@ class custom_scramble {
     this.scrambled_css_padding = scrambled_css_padding;
     this.scrambled_css_width = scrambled_css_width;
     this.scrambled_css_height = scrambled_css_height;
+    this.scrambled_css_font_size = scrambled_css_font_size;
     this.bg_type = bg_type;
     this.bg_r_min = bg_r_min;
     this.bg_r_max = bg_r_max;
@@ -62,6 +66,8 @@ class custom_scramble {
     this.width_max = width_max;
     this.height_min = height_min;
     this.height_max = height_max;
+    this.font_size_min = font_size_min,
+    this.font_size_max = font_size_max
   }
   check_elements() {
     // if all is selected, all true, otherwise specific ones true
@@ -156,6 +162,7 @@ custom_scramble_button.addEventListener("click", async () => {
     document.getElementById("custom_css_padding").checked,
     document.getElementById("custom_css_width").checked,
     document.getElementById("custom_css_height").checked,
+    document.getElementById("custom_css_font_size").checked,
     document.getElementById("custom_bg_type").value,
     document.getElementById("custom_bg_r_min").value,
     document.getElementById("custom_bg_r_max").value,
@@ -177,6 +184,8 @@ custom_scramble_button.addEventListener("click", async () => {
     document.getElementById("custom_width_max").value,
     document.getElementById("custom_height_min").value,
     document.getElementById("custom_height_max").value,
+    document.getElementById("custom_font_size_min").value,
+    document.getElementById("custom_font_size_max").value
   )
   custom_message.check_elements();
   custom_message.check_css();
