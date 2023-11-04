@@ -22,11 +22,10 @@
 
 ### To Do:
 1. Beta Test
-2. Font size scramble
-3. Display scramble
-4. position scramble
-5. saving custom scrambles as new templates
-6. Possibly hiding dev options unless the css is checked 
+2. Display scramble
+3. position scramble
+4. saving custom scrambles as new templates
+5. Possibly hiding dev options unless the css is checked 
     (don't display background color params unless its enabled)
 
 
