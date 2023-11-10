@@ -66,8 +66,7 @@ class custom_scramble {
     this.width_max = width_max;
     this.height_min = height_min;
     this.height_max = height_max;
-    this.font_size_min = font_size_min,
-    this.font_size_max = font_size_max
+    (this.font_size_min = font_size_min), (this.font_size_max = font_size_max);
   }
   check_elements() {
     // if all is selected, all true, otherwise specific ones true
@@ -88,11 +87,13 @@ class custom_scramble {
       this.scrambled_css_height = true;
     }
   }
-  check_all(){
-    if(
+  check_all() {
+    if (
+      !document.getElementById("custom_elements_all").checked &&
       !document.getElementById("custom_elements_divs").checked &&
       !document.getElementById("custom_elements_p").checked &&
       !document.getElementById("custom_elements_headers").checked &&
+      !document.getElementById("custom_css_all").checked &&
       !document.getElementById("custom_css_bg_color").checked &&
       !document.getElementById("custom_css_content_color").checked &&
       !document.getElementById("custom_css_margins").checked &&
@@ -100,13 +101,13 @@ class custom_scramble {
       !document.getElementById("custom_css_width").checked &&
       !document.getElementById("custom_css_height").checked &&
       !document.getElementById("custom_css_font_size").checked
-    ){
-    const status = document.getElementById("error");
+    ) {
+      const status = document.getElementById("error");
       status.style.setProperty("display", "block");
-           setTimeout(() => {
-             status.style.setProperty("display", "none");
-           }, 5000);
-          }
+      setTimeout(() => {
+        status.style.setProperty("display", "none");
+      }, 5000);
+    }
   }
 }
 
@@ -116,15 +117,15 @@ async function sendMessageToActiveTab(sent_message) {
     active: true,
     lastFocusedWindow: true,
   });
-  if(chrome.runtime.lastError) {
+  if (chrome.runtime.lastError) {
     setTimeout(ping, 1000);
   } else {
     const response = await chrome.tabs.sendMessage(tab.id, {
       //send the message
       greeting: sent_message,
-    })
+    });
   }
-  };
+}
 
 //On button presses
 let full_scramble_button = document.getElementById("full_scramble_button");
@@ -156,22 +157,24 @@ refresh_button.addEventListener("click", async () => {
 let display = document.getElementById("dev_tools");
 display.style.display = "none";
 
-let dev = document.getElementById("dev_button").addEventListener("click", () => {
-  if (display.style.display == "flex") {
-    display.style.removeProperty("display");
-    display.style.setProperty("display", "none");
-  } else if (display.style.display == "none") {
-    display.style.removeProperty("display");
-    display.style.setProperty("display", "flex");
-  }
-});
+let dev = document
+  .getElementById("dev_button")
+  .addEventListener("click", () => {
+    if (display.style.display == "flex") {
+      display.style.removeProperty("display");
+      display.style.setProperty("display", "none");
+    } else if (display.style.display == "none") {
+      display.style.removeProperty("display");
+      display.style.setProperty("display", "flex");
+    }
+  });
 //end display dev tools
 
 //Dev tools
 let custom_scramble_button = document.getElementById("custom_scramble_button");
 custom_scramble_button.addEventListener("click", async () => {
   //get all data from dev tools and make into a new message
-  console.log("custom scramble initiated")
+  console.log("custom scramble initiated");
   let custom_message = new custom_scramble(
     document.getElementById("custom_elements_divs").checked,
     document.getElementById("custom_elements_p").checked,
@@ -206,11 +209,11 @@ custom_scramble_button.addEventListener("click", async () => {
     document.getElementById("custom_height_max").value,
     document.getElementById("custom_font_size_min").value,
     document.getElementById("custom_font_size_max").value
-  )
+  );
   custom_message.check_elements();
   custom_message.check_css();
   custom_message.check_all();
-  console.log(custom_message)
+  console.log(custom_message);
   const data = await sendMessageToActiveTab(custom_message);
 });
 
