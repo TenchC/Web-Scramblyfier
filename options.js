@@ -89,18 +89,20 @@ class custom_scramble {
   }
   check_all() {
     if (
+      (
       !document.getElementById("custom_elements_all").checked &&
       !document.getElementById("custom_elements_divs").checked &&
       !document.getElementById("custom_elements_p").checked &&
-      !document.getElementById("custom_elements_headers").checked &&
-      !document.getElementById("custom_css_all").checked &&
+      !document.getElementById("custom_elements_headers").checked ) 
+      ||
+      (!document.getElementById("custom_css_all").checked &&
       !document.getElementById("custom_css_bg_color").checked &&
       !document.getElementById("custom_css_content_color").checked &&
       !document.getElementById("custom_css_margins").checked &&
       !document.getElementById("custom_css_padding").checked &&
       !document.getElementById("custom_css_width").checked &&
       !document.getElementById("custom_css_height").checked &&
-      !document.getElementById("custom_css_font_size").checked
+      !document.getElementById("custom_css_font_size").checked)
     ) {
       const status = document.getElementById("error");
       status.style.setProperty("display", "block");
